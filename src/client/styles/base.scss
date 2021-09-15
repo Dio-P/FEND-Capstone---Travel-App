@@ -12,3 +12,21 @@ section {
     max-width: 800px;
     margin: 50px auto;
 }
+
+.card{
+    background-color: #ebc994;
+    color:black;
+    display: grid;
+    grid-template-rows: 70px 130px 60px 40px 15px;
+    // filter:drop-shadow(10px 10px 4px #b0b0b0);
+    border-radius: 40px;
+    height: 360px;
+    width: 1020px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: auto;
+    padding: 10px;
+}
