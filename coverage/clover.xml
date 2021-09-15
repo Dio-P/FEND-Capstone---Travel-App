@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1631702773467" clover="3.2.0">
+  <project timestamp="1631702773467" name="All files">
+    <metrics statements="34" coveredstatements="10" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2" elements="38" coveredelements="13" complexity="0" loc="34" ncloc="34" packages="2" files="2" classes="2"/>
+    <package name="client.js">
+      <metrics statements="6" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="postFunc.js" path="C:\Users\BDLV\Google Drive\0. Now\0. Webpack\MyTest2 Clean\src\client\js\postFunc.js">
+        <metrics statements="6" coveredstatements="3" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="server">
+      <metrics statements="28" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="mockAPI.js" path="C:\Users\BDLV\Google Drive\0. Now\0. Webpack\MyTest2 Clean\src\server\mockAPI.js">
+        <metrics statements="28" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="74" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
