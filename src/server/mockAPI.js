@@ -2,37 +2,6 @@ const axios = require('axios').default;
 require('dotenv').config()
 // const fetch = require('node-fetch');
 let inputBox = {}
-// // https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2021-09-11&end_date=2021-09-12&key=API_KEY
-// https://api.weatherbit.io/v2.0/history/daily?&lat=38.123&lon=-78.543&start_date=2021-09-11&end_date=2021-09-12&key=8bd27fa25c054293935d109ab993c167
-// async function apiCall(req, res){
-//     const baseUrl = "https://api.weatherbit.io/v2.0/history/daily?";
-//     const key = "&key=8bd27fa25c054293935d109ab993c167"; //needs to go into envyronment!!;
-//     let lat = "&lat=38.123"; // `&lat=${inputLat}`// This needs to be updated by the previous function
-//     let long = "&lon=-78.543"; //  `&lon=${inputLong}`// This needs to be updated by the previous function
-//     let start_date = "&start_date=2021-09-11"; // This needs to be given by the form  
-//     let end_date = "&end_date=2021-09-12"; // This needs to be given by the form
-//     const url = (baseUrl+lat+long+start_date+end_date+key);
-//     console.log(url);
-//     // let options2 = {
-//     //     method: 'GET',
-//     //     url: url,
-//     //     headers: {
-//     //         'Accept': 'application/json',
-//     //         'Content-Type': 'application/json;charset=UTF-8'
-//     //     }
-//     // }
-//     // return inputBox
-
-// //     const resp = await axios(options2);
-// //     try{
-// //     let bitData = await resp.data;
-// //     console.log("bitData is =>", bitData);
-// //     inputBox["bitData"]= data;
-// // } catch (error) {
-// //     console.error(error);
-// //   }
-// }
-
 
 async function apiCall(req, res){
     // console.log("url.req.bodyis: ");
@@ -74,7 +43,7 @@ const response = await axios(options);
     inputBox["longitude"]=data.postalCodes[0].lng;
     inputBox["country"]=data.postalCodes[0].countryCode;
     // inputBox["irony"]=data.postalCodes.irony;
-    console.log(inputBox);
+    console.log("inputBox =>", inputBox);
     weatherbit(inputBox);
     // return inputBox;
 }catch (error) {
@@ -101,13 +70,26 @@ async function weatherbit(inputBox) { //not called yet
         }
     }
     // return inputBox
-
+// 
     const res = await axios(options2);
     try{
     let bitData = await res.data;
     console.log("bitData is =>", bitData);
     inputBox["bitData"]= bitData;
     console.log("inputBox =>", inputBox);
+    let bitWeatherData = inputBox.bitData.data
+    console.log("bitWeatherData =>", bitWeatherData)
+
+    let min_temp = bitWeatherData.min_temp;
+    let max_temp = bitWeatherData.max_temp;
+    let snow /*(if >0)*/ = bitWeatherData.snow;
+    let clouds = bitWeatherData.clouds;
+    inputBox["min_temp"]= bitData.data[0].min_temp;
+    inputBox["max_temp"]= bitData.data[0].max_temp;
+    inputBox["snow"]= bitData.data[0].snow;
+    inputBox["clouds"]= bitData.data[0].clouds;
+    console.log("inputBox =>", inputBox);
+    
 
 } catch (error) {
     console.error(error);

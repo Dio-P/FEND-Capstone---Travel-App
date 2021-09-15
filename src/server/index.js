@@ -34,10 +34,10 @@ app.listen(3000, function () {
 
 app.post("/url", apiCall)
 
-// app.get("/results", function(req,res){
-//   console.log("inputBox =>", inputBox);
-//   res.send(inputBox);
-// });
+app.get("/results", function(req,res){
+  console.log("inputBox =>", inputBox);
+  res.send(inputBox);
+});
 
 // app.post("/addWeather", addWeather);
 
