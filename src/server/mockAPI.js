@@ -6,9 +6,10 @@ let inputBox = {}
 async function apiCall(req, res){
     // console.log("url.req.bodyis: ");
     // console.log(req.body);
-    const baseUrl = "http://api.geonames.org/postalCodeSearch?placename=" 
+    const baseUrl = "http://api.geonames.org/postalCodeSearch?" 
     console.log(baseUrl);
-    const placename = "Glasgow";
+    const postalcode= "postalcode=G11 6rh"
+    const placename = "&placename=Glasgow";
     // const apiKey = process.env.apiKey;
     // console.log("apiKey =>", apiKey);
     const country = "&country=GB"
@@ -16,7 +17,9 @@ async function apiCall(req, res){
     // let nUrl = req.body.data.newUrl;
     // console.log("url =>", nUrl);
     const username = "&username=dio_papa";
-    let url = (baseUrl+placename+country+maxRows+username);
+    const URL = (baseUrl+postalcode+placename+country+maxRows+username);
+    console.log("URl =>", URL);
+    let url = encodeURI(URL);
     console.log("url =>", url);
         let options = {
             method: 'GET',
@@ -26,23 +29,24 @@ async function apiCall(req, res){
                 'Content-Type': 'application/json;charset=UTF-8'
             },
         };
-    }
-// const response = await axios(options, requestOptions);
-// // let responseOK = response && response.status === 200 && response.statusText === 'OK';
-// // if (responseOK) {
-//     console.log("response is =>", response);
-//     let data = await response.data;
     
-//     // console.log("data is =>", data);
-//     inputBox["agreement"]=data.agreement;
-//     inputBox["subjectivity"]=data.subjectivity;
-//     inputBox["confidence"]=data.confidence;
-//     inputBox["irony"]=data.irony;
-//     console.log(inputBox);
-//     return inputBox
-//     // do something with data
-// }
-    // }
+const response = await axios(options);
+// let responseOK = response && response.status === 200 && response.statusText === 'OK';
+// if (responseOK) {
+    console.log("response is =>", response);
+    let data = await response.data;
+    
+    console.log("data is =>", data);
+    inputBox["data"]= data.postalCodes
+    inputBox["latitude"]=data.postalCodes[0].lat;
+    inputBox["longitude"]=data.postalCodes[0].lng;
+    inputBox["country"]=data.postalCodes[0].countryCode;
+    // inputBox["irony"]=data.postalCodes.irony;
+    console.log(inputBox);
+    return inputBox
+    // do something with data
+}
+    
 //     const responce = async (baseUrl, apiKey, ofType, url, lang, requestOptions) =>{
 //       await fetch(baseUrl+apiKey+ofType+url+lang, requestOptions)
 //           .then(responce => {
