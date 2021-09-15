@@ -43,13 +43,14 @@ const response = await axios(options);
     inputBox["country"]=data.postalCodes[0].countryCode;
     // inputBox["irony"]=data.postalCodes.irony;
     console.log(inputBox);
-    
-async function weatherbit() { //not called yet
-    
+    return inputBox;
+async function weatherbit(inputBox) { //not called yet
+    let inputLat= inputBox.latitude;
+    let inputLong= inputBox.longitude;
     const baseUrl = "HTTPS: https://api.weatherbit.io/v2.0/history/daily";
     const key = "key=8bd27fa25c054293935d109ab993c167"; //needs to go into envyronment!!;
-    let lat = "&lat=38.123"; // This needs to be updated by the previous function
-    let long = "&lon=-78.543"; // This needs to be updated by the previous function
+    let lat = "&lat=38.123"; //`&lat=${inputLat}`// This needs to be updated by the previous function
+    let long = "&lon=-78.543"; // `&lon=${inputLong}` // This needs to be updated by the previous function
     let start_date = "&start_date=2021-09-11"; // This needs to be given by the form  
     let end_date = "&end_date=2021-09-12"; // This needs to be given by the form
     const url = (baseUrl+key+lat+long+start_date+end_date);
@@ -60,10 +61,12 @@ async function weatherbit() { //not called yet
             'Accept': 'application/json',
             'Content-Type': 'application/json;charset=UTF-8'
         }
+    }
     // return inputBox
 
-const  res = await axios(options2)
-    // do something with data
+    const res = await axios(options2);
+    let bitData = await res.data;
+    console.log("bitData is =>", bitData);
 }
 }
     
