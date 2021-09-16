@@ -1,6 +1,8 @@
+// const Fs = require('fs')  
 const axios = require('axios').default;
 require('dotenv').config()
 // const fetch = require('node-fetch');
+// const Path = require('path') 
 let inputBox = {}
 
 async function apiCall(req, res){
@@ -45,6 +47,7 @@ const response = await axios(options);
     // inputBox["irony"]=data.postalCodes.irony;
     console.log("inputBox =>", inputBox);
     weatherbit(inputBox);
+    pixabay()
     // return inputBox;
 }catch (error) {
     console.error(error);
@@ -80,15 +83,88 @@ async function weatherbit(inputBox) { //not called yet
     let bitWeatherData = inputBox.bitData.data
     console.log("bitWeatherData =>", bitWeatherData)
 
-    let min_temp = bitWeatherData.min_temp;
-    let max_temp = bitWeatherData.max_temp;
-    let snow /*(if >0)*/ = bitWeatherData.snow;
-    let clouds = bitWeatherData.clouds;
+    // let min_temp = bitWeatherData.min_temp;
+    // let max_temp = bitWeatherData.max_temp;
+    // let snow /*(if >0)*/ = bitWeatherData.snow;
+    // let clouds = bitWeatherData.clouds;
     inputBox["min_temp"]= bitData.data[0].min_temp;
     inputBox["max_temp"]= bitData.data[0].max_temp;
     inputBox["snow"]= bitData.data[0].snow;
     inputBox["clouds"]= bitData.data[0].clouds;
     console.log("inputBox =>", inputBox);
+    
+
+} catch (error) {
+    console.error(error);
+  }
+}
+
+async function pixabay(){
+    let cityName= "Glasgow"; //how is it going to get the name from the client? Get or mod exp from server?
+    console.log("baixabay runs")
+    const baseUrl = "https://pixabay.com/api/?";
+    const key = "key=23402174-d80a0bf663b43f42c0300decb";
+    let searcn = `&q=${cityName}`;  //"&p=Glasgow";
+    const image_type = "&image_type=photo";
+
+    const url = (baseUrl+key+searcn+image_type);
+    console.log("pixabayUrl=>", url);
+
+    let options3 = {
+        method: 'GET',
+        url: url,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json;charset=UTF-8'
+        }
+    }
+    
+const resp = await axios(options3);
+    try{
+    let pixabayData = await resp.data;
+    console.log("pixabayData is =>", pixabayData);
+    inputBox["pixabayData"]= pixabayData;
+    console.log("inputBox =>", inputBox);
+    let newCityPhoto = pixabayData.hits[0];
+    console.log("newCityPhoto =>", newCityPhoto);
+    let webformatURL = pixabayData.hits[0].webformatURL
+    console.log("webformatURL =>", webformatURL);
+    // let newPhotoUrl = new URL(webformatURL);
+    // console.log("newPhotoUrl =>", newPhotoUrl);
+    
+
+    // let options4 = {
+    //     method: 'GET',
+    //     responseType: 'stream',
+    //     url: webformatURL,
+    //     // ...............................................
+    //     // headers: {
+    //     //     'Accept': 'application/json',
+    //     //     'Content-Type': 'application/json;charset=UTF-8'
+    // }
+    // const path = Path.resolve(__dirname, 'Images', 'code.jpg')
+    // const writer = Fs.createWriteStream(path)
+    
+    // let newPhoto = await axios(options4);
+    
+    // console.log("newPhoto =>", newPhoto);
+    // let newPhotoData = await newPhoto.data;
+    // console.log("newPhotoData =>", newPhotoData);
+    // newPhotoData.pipe(writer)
+    // ........................................................
+    // writer.on('finish', resolve)
+    // let bitWeatherData = inputBox.bitData.data
+    // console.log("bitWeatherData =>", bitWeatherData)
+
+    // let min_temp = bitWeatherData.min_temp;
+    // let max_temp = bitWeatherData.max_temp;
+    // let snow /*(if >0)*/ = bitWeatherData.snow;
+    // let clouds = bitWeatherData.clouds;
+    // inputBox["min_temp"]= bitData.data[0].min_temp;
+    // inputBox["max_temp"]= bitData.data[0].max_temp;
+    // inputBox["snow"]= bitData.data[0].snow;
+    // inputBox["clouds"]= bitData.data[0].clouds;
+    // console.log("inputBox =>", inputBox);
     
 
 } catch (error) {
@@ -127,4 +203,4 @@ async function weatherbit(inputBox) { //not called yet
   module.exports = {
     method:apiCall,
     otherMethod: inputBox,
-    /*otherOtherMethod: baseUrl*/}
+    otherOtherMethod: pixabay}

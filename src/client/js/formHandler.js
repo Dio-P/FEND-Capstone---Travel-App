@@ -1,23 +1,34 @@
 
 import axios from 'axios';
 // import {fetch} from'node-fetch';
+let UI_Inp = {}
+
 
 async function handleSubmit(event) {
     let newUrl = {}
     event.preventDefault()
-    let formText = document.getElementById('url').value;
-    CreateNURL(formText);
-    console.log("newUrl is !!!!!!!!!!!!!==>", newUrl);
-    Client.postData("/url", {newUrl})
+    // let formText = document.getElementById("url").value;
+    let formDate= document.getElementById("date").value;
+    let formCity= document.getElementById("city").value;
+    alert(UI_Inp);
+    // you need to send all to the server, in one, or seperate objects !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-function CreateNURL(formText){
-    let url = new URL(formText)
-    console.log("new URL: ");
-    console.log(url);
-    alert(url);
-    newUrl = url
-    return url
-}
+    // CreateNURL(formText);
+    // console.log("newUrl is !!!!!!!!!!!!!==>", newUrl);
+    UI_Inp["newUrl"]=newUrl;
+    UI_Inp["formCity"]=formCity;
+    UI_Inp["formDate"]=formDate;
+    console.log(UI_Inp);
+    Client.postData("/UI_Inp", {UI_Inp})
+
+// function CreateNURL(formText){
+//     let url = new URL(formText)
+//     console.log("new UI_Inp: ");
+//     console.log(UI_Inp);
+//     alert(UI_Inp);
+//     newUrl = url
+//     return url
+// }
 
 const respons= await axios.get('http://localhost:3000/results')
     try {

@@ -6,8 +6,9 @@ const express = require('express');
 const fetch = require('node-fetch');
 const mockApi = require("./mockAPI");
 require('dotenv').config()
-const apiCall = mockApi.method;
+// const apiCall = mockApi.method;
 let inputBox = mockApi.otherMethod;
+const pixabay = mockApi.otherOtherMethod;
 
 // const mockAPIResponse = require('./mockAPI.js')
 
@@ -32,7 +33,8 @@ app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 })
 
-app.post("/url", apiCall)
+// app.post("/UI_Inp", apiCall)
+app.post("/UI_Inp", pixabay)
 
 app.get("/results", function(req,res){
   console.log("inputBox =>", inputBox);
