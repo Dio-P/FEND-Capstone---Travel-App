@@ -38,7 +38,7 @@ const respons= await axios.get('http://localhost:3000/results')
         console.log("ClInputBox!!!!!!!! ==>", ClInputBox);
         let imgURL = ClInputBox.webformatURL;
         console.log("imgURL!!!!!!!! ==>", imgURL);
-        document.getElementById("imgHolder").innerHTML = `<img src="${imgURL}"></img>`
+        document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}"></img>`
         // console.log("agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony);
         // document.getElementById('results').innerHTML = "agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony 
         // return response

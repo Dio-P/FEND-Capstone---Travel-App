@@ -33,7 +33,7 @@ section {
 }
 
 #imgHolder{
-    grid-area: 1/1/4/2;
+    grid-area: 1/1/5/2;
 }
 
 #date{
@@ -52,4 +52,11 @@ section {
 
 #prognosis{
     grid-area: 4/2/4/3;
+}
+
+#mainImg{
+    width: 90%;
+    // height: 100%;
+    background-position: center;
+    border-radius: 10px;
 }
