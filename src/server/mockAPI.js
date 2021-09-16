@@ -104,10 +104,11 @@ async function pixabay(){
     console.log("baixabay runs")
     const baseUrl = "https://pixabay.com/api/?";
     const key = "key=23402174-d80a0bf663b43f42c0300decb";
-    let searcn = `&q=${cityName}`;  //"&p=Glasgow";
+    let searcn = `&q=${cityName}+city`;  //"&p=Glasgow";
     const image_type = "&image_type=photo";
+    // const editors_choice = "&editors_choice=true";
 
-    const url = (baseUrl+key+searcn+image_type);
+    const url = (baseUrl+key+searcn+/*editors_choice+*/image_type);
     console.log("pixabayUrl=>", url);
 
     let options3 = {
@@ -123,12 +124,14 @@ const resp = await axios(options3);
     try{
     let pixabayData = await resp.data;
     console.log("pixabayData is =>", pixabayData);
-    inputBox["pixabayData"]= pixabayData;
+    // inputBox["pixabayData"]= pixabayData;
     console.log("inputBox =>", inputBox);
     let newCityPhoto = pixabayData.hits[0];
     console.log("newCityPhoto =>", newCityPhoto);
     let webformatURL = pixabayData.hits[0].webformatURL
     console.log("webformatURL =>", webformatURL);
+    inputBox["webformatURL"]= webformatURL;
+    return webformatURL;
     // let newPhotoUrl = new URL(webformatURL);
     // console.log("newPhotoUrl =>", newPhotoUrl);
     

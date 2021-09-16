@@ -9,6 +9,7 @@ require('dotenv').config()
 // const apiCall = mockApi.method;
 let inputBox = mockApi.otherMethod;
 const pixabay = mockApi.otherOtherMethod;
+// let webformatURL = mockApi.fourthMethod;
 
 // const mockAPIResponse = require('./mockAPI.js')
 

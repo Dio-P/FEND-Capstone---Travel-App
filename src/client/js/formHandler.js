@@ -33,11 +33,15 @@ async function handleSubmit(event) {
 const respons= await axios.get('http://localhost:3000/results')
     try {
         // let response = await respons.json()
-        let response = await respons.data;
-        console.log("res for results is!!!!!!!! ==>", response);
-        console.log("agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony);
-        document.getElementById('results').innerHTML = "agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony 
-        return response
+        console.log("respons =>",respons);
+        let ClInputBox = await respons.data;
+        console.log("ClInputBox!!!!!!!! ==>", ClInputBox);
+        let imgURL = ClInputBox.webformatURL;
+        console.log("imgURL!!!!!!!! ==>", imgURL);
+        document.getElementById("imgHolder").innerHTML = `<img src="${imgURL}"></img>`
+        // console.log("agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony);
+        // document.getElementById('results').innerHTML = "agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony 
+        // return response
     }catch(error){
         console.log("error", error);
     }
