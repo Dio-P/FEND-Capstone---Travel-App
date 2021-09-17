@@ -1,21 +1,40 @@
 
 import axios from 'axios';
+    import Litepicker from 'litepicker';
+
 // import {fetch} from'node-fetch';
 let UI_Inp = {}
-
+new Litepicker({
+    element: document.getElementById('datepicker'),
+    singleMode: false,
+    tooltipText: {
+      one: 'night',
+      other: 'nights'
+    },
+    tooltipNumber: (totalDays) => {
+      return totalDays - 1;
+    }
+  })
 
 async function handleSubmit(event) {
-    let newUrl = {}
+    // const form = document.getElementById('form');
+    // form.addEventListener('submit', logSubmit, true);
+    // let newUrl = {}
+    // log.textContent = 
+    // console.log(`Form Submitted! Time stamp: ${event.timeStamp}`);
     event.preventDefault()
     // let formText = document.getElementById("url").value;
     let formDate= document.getElementById("date").value;
+    console.log("formDate =>", formDate);
+
     let formCity= document.getElementById("city").value;
+    console.log("formCity=>", formCity);
     alert(UI_Inp);
     // you need to send all to the server, in one, or seperate objects !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     // CreateNURL(formText);
     // console.log("newUrl is !!!!!!!!!!!!!==>", newUrl);
-    UI_Inp["newUrl"]=newUrl;
+    // UI_Inp["newUrl"]=newUrl;
     UI_Inp["formCity"]=formCity;
     UI_Inp["formDate"]=formDate;
     console.log(UI_Inp);

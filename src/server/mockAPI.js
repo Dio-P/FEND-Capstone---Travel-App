@@ -99,15 +99,18 @@ async function weatherbit(inputBox) { //not called yet
   }
 }
 
-async function pixabay(){
+async function pixabay(req,res){
     let cityName= "Glasgow"; //how is it going to get the name from the client? Get or mod exp from server?
-    console.log("baixabay runs")
+    // console.log("baixabay runs")
     const baseUrl = "https://pixabay.com/api/?";
     const key = "key=23402174-d80a0bf663b43f42c0300decb";
     let searcn = `&q=${cityName}+city`;  //"&p=Glasgow";
     const image_type = "&image_type=photo";
     // const editors_choice = "&editors_choice=true";
-
+    let data = req.body;
+    console.log(data);
+    console.log("data.formDate =>", data.data.UI_Inp.formDate);
+    console.log("data.formCity =>", data.data.UI_Inp.formCity);
     const url = (baseUrl+key+searcn+/*editors_choice+*/image_type);
     console.log("pixabayUrl=>", url);
 
@@ -123,7 +126,7 @@ async function pixabay(){
 const resp = await axios(options3);
     try{
     let pixabayData = await resp.data;
-    console.log("pixabayData is =>", pixabayData);
+    // console.log("pixabayData is =>", pixabayData);
     // inputBox["pixabayData"]= pixabayData;
     console.log("inputBox =>", inputBox);
     let newCityPhoto = pixabayData.hits[0];

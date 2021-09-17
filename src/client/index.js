@@ -1,6 +1,8 @@
 
 import { handleSubmit } from './js/formHandler'
 import { postData } from './js/postFunc'
+import Litepicker from 'litepicker';
+
 
 import './styles/resets.scss'
 import './styles/base.scss'
@@ -12,4 +14,5 @@ export {
 
     handleSubmit,
     postData,
+    Litepicker
 }

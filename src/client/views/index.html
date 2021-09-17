@@ -2,7 +2,12 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Test</title>
+        <script>
+            const picker = new Litepicker({ 
+              element: document.getElementById('date') 
+            });
+          </script>
+          <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
     </head>
 
     <body>
@@ -15,6 +20,7 @@
                 navigation
             </div>
         </header>
+        
 
         <main>
             <section>
@@ -23,8 +29,13 @@
                     <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form> -->
                 <div class=card id=card1>
+                    <div id="title"></div>
+                    <label for="date">Date</label>
+                    <input type="text" name="date" id="date" /><br />
+                    <input id="datepicker" class="form-control" style="width: 300px;margin: 15px 0" readonly="">
                     <div id= "imgHolder"></div>
-                    <input id="date" type="text" name="input" value="" placeholder="date">
+                    
+                    <!-- <input id="date" type="text" name="input" value="" placeholder="date"> -->
                     <input id="city" type="text" name="input" value="" placeholder="city">
                     <input id="subB" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                     <div id="prognosis"> </div>
