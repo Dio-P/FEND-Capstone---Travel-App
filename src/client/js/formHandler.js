@@ -24,8 +24,17 @@ async function handleSubmit(event) {
     // console.log(`Form Submitted! Time stamp: ${event.timeStamp}`);
     event.preventDefault()
     // let formText = document.getElementById("url").value;
-    let formDate= document.getElementById("date").value;
+    // let formDate= document.getElementById("date").value;
+    let formDate= document.getElementById('datepicker').value
     console.log("formDate =>", formDate);
+
+    let date = formDate.split(' ');
+    console.log(date);
+    let startingDate = date[0];
+    console.log("startingDate =>", startingDate);
+    let endData = date[2];
+    console.log("endData =>", endData);
+  
 
     let formCity= document.getElementById("city").value;
     console.log("formCity=>", formCity);
