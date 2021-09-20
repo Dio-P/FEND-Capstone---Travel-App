@@ -50,6 +50,7 @@ section {
 
 #title{
     grid-area: 1/1/2/2;
+    font-size: 56px;
 }
 
 #days{
@@ -63,9 +64,13 @@ section {
 }
 
 #country{
+    width: 300px;
+    margin: 15px 0;
 }
 
 #city {
+    width: 300px;
+    margin: 15px 0;
     
 
 }
@@ -76,6 +81,9 @@ section {
 
 #datepicker{
     grid-area: 2/2/2/3;
+    width: 300px;
+    margin: 15px 0;
+    font-size: 23px;
 
 }
 
@@ -83,6 +91,7 @@ section {
 
 #subB{
     grid-area: 4/2/4/3;
+    color:#B80C4D;
 }
 
 #prognosis{
