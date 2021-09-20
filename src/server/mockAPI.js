@@ -64,9 +64,9 @@ const response = await axios(options);
     // console.log("inputBox =>", inputBox); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //pixabay()
     if(req.body.data.UI_Inp.formDaysLeft > 16){
-        weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDateEnd);
+        weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDateEnd, countryCode);
     }else{
-        weatherbitForec(inputBox, cityName, newDateStart, newDateEnd);
+        weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, countryCode);
     }
     //pixabay()
     // return inputBox;
@@ -74,7 +74,7 @@ const response = await axios(options);
     console.error(error);
   }
     }
-async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDateEnd) { 
+async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDateEnd, countryCode) { 
     let inputLat= inputBox.latitude;
     let inputLong= inputBox.longitude;
     const baseUrl = "https://api.weatherbit.io/v2.0/history/daily?";
@@ -114,13 +114,14 @@ async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDat
     inputBox["clouds"]= bitData.data[0].clouds;
     // console.log("inputBox =>", inputBox);
     pixabay(cityName);
+    restcountries(countryCode)
 
 } catch (error) {
     console.error(error);
   }
 }
  
-async function weatherbitForec(inputBox, cityName, newDateStart, newDateEnd) { //not called yet
+async function weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, countryCode) { //not called yet
     let inputLat= inputBox.latitude;
     let inputLong= inputBox.longitude;
     const baseUrl = "https://api.weatherbit.io/v2.0/forecast/daily?";
@@ -160,6 +161,7 @@ async function weatherbitForec(inputBox, cityName, newDateStart, newDateEnd) { /
     inputBox["clouds"]= bitData.data[0].clouds;
     // console.log("inputBox =>", inputBox); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     pixabay(cityName);
+    restcountries(countryCode)
     
 
 } catch (error) {
@@ -195,57 +197,51 @@ async function pixabay(cityName){
 const resp = await axios(options3);
     try{
     let pixabayData = await resp.data;
-    // console.log("pixabayData is =>", pixabayData);
-    // inputBox["pixabayData"]= pixabayData;
-    // console.log("inputBox =>", inputBox);
-    // let newCityPhoto = pixabayData.hits[0];
-    // console.log("newCityPhoto =>", newCityPhoto);
     let webformatURL = pixabayData.hits[0].webformatURL
-    // console.log("webformatURL =>", webformatURL);
     inputBox["webformatURL"]= webformatURL;
     return webformatURL;
-    // let newPhotoUrl = new URL(webformatURL);
-    // console.log("newPhotoUrl =>", newPhotoUrl);
-    
-
-    // let options4 = {
-    //     method: 'GET',
-    //     responseType: 'stream',
-    //     url: webformatURL,
-    //     // ...............................................
-    //     // headers: {
-    //     //     'Accept': 'application/json',
-    //     //     'Content-Type': 'application/json;charset=UTF-8'
-    // }
-    // const path = Path.resolve(__dirname, 'Images', 'code.jpg')
-    // const writer = Fs.createWriteStream(path)
-    
-    // let newPhoto = await axios(options4);
-    
-    // console.log("newPhoto =>", newPhoto);
-    // let newPhotoData = await newPhoto.data;
-    // console.log("newPhotoData =>", newPhotoData);
-    // newPhotoData.pipe(writer)
-    // ........................................................
-    // writer.on('finish', resolve)
-    // let bitWeatherData = inputBox.bitData.data
-    // console.log("bitWeatherData =>", bitWeatherData)
-
-    // let min_temp = bitWeatherData.min_temp;
-    // let max_temp = bitWeatherData.max_temp;
-    // let snow /*(if >0)*/ = bitWeatherData.snow;
-    // let clouds = bitWeatherData.clouds;
-    // inputBox["min_temp"]= bitData.data[0].min_temp;
-    // inputBox["max_temp"]= bitData.data[0].max_temp;
-    // inputBox["snow"]= bitData.data[0].snow;
-    // inputBox["clouds"]= bitData.data[0].clouds;
-    // console.log("inputBox =>", inputBox);
-    
-
 } catch (error) {
     console.error(error);
   }
 }
+
+async function restcountries(countryCode) {
+    let CountryCode= countryCode; //how is it going to get the name from the client? Get or mod exp from server?
+    // console.log("baixabay runs")
+    console.log("Restcountries CountryCode=>", CountryCode)
+    const baseUrl = "https://restcountries.eu/rest/v2/name/";   
+    let country = `${CountryCode}`//"&p=Glasgow"
+    const restUrl = (baseUrl+country);
+    console.log("restUrl=>",restUrl);
+
+    let options3 = {
+        method: 'GET',
+        url: restUrl,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json;charset=UTF-8'
+        }
+    }
+    const respo = await axios(options3);
+    try{
+    let restcountriesData = await respo.data;
+
+    inputBox["OfficialName"]= restcountriesData[0].name;
+    inputBox["callingCodes"]= restcountriesData[0].callingCodes;
+    inputBox["capital"]= restcountriesData[0].capital;
+    inputBox["region"]= restcountriesData[0].region;
+    inputBox["subregion"]= restcountriesData[0].subregion;
+    inputBox["population"]= restcountriesData[0].population;
+    inputBox["area"]= restcountriesData[0].area;
+    inputBox["currencies"]= restcountriesData[0].currencies.name;
+
+
+
+
+} catch (error) {
+    console.error(error);
+  }
+};
 
     // ...........................................
 //     const responce = async (baseUrl, apiKey, ofType, url, lang, requestOptions) =>{
