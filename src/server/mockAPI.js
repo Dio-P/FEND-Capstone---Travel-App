@@ -18,6 +18,7 @@ async function apiCall(req, res){
     // UI_Inp["lastYearDateEnd=>"]=lastYearDateEnd;
     
     let cityName = req.body.data.UI_Inp.formCity;
+    let countryCode = req.body.data.UI_Inp.formCountry;
     let newDateStart = req.body.data.UI_Inp.newDateStart;
     let newDateEnd = req.body.data.UI_Inp.newDateEnd;
     let lastYearDateStart = req.body.data.UI_Inp.lastYearDateStart;
@@ -29,7 +30,7 @@ async function apiCall(req, res){
     const placename = `&placename=${cityName}`;  //"&placename=Glasgow";
     // const apiKey = process.env.apiKey;
     // console.log("apiKey =>", apiKey);
-    const country = "&country=GB"
+    const country = `&country=${countryCode}`; //${countryCode} "&country=GB";
     const maxRows = "&maxRows=10";
     // let nUrl = req.body.data.newUrl;
     // console.log("url =>", nUrl);
@@ -58,7 +59,7 @@ const response = await axios(options);
     // inputBox["data"]= data.postalCodes
     inputBox["latitude"]=data.postalCodes[0].lat;
     inputBox["longitude"]=data.postalCodes[0].lng;
-    inputBox["country"]=data.postalCodes[0].countryCode;
+    // inputBox["country"]=data.postalCodes[0].countryCode;
     // inputBox["irony"]=data.postalCodes.irony;
     // console.log("inputBox =>", inputBox); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //pixabay()

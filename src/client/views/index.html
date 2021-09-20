@@ -31,12 +31,15 @@
                 <div class=card id=card1>
                     <div id="title"></div>
                     <p id="days"> </p>
-                    <label for="datepicker">Date</label>
+                    <!-- <label for="datepicker">Date</label> -->
                     <input id="datepicker" class="form-control" style="width: 300px;margin: 15px 0" readonly="">
                     <div id= "imgHolder"></div>
                     
+                    <div id="geog">
+                        <input id="city" type="text" name="input" value="" placeholder="city" style="width: 300px;margin: 15px 0">
+                        <input id="country" type="text" name="input" value="" placeholder="country initials" style="width: 300px;margin: 15px 0">
+                    </div>
                     <!-- <input id="date" type="text" name="input" value="" placeholder="date"> -->
-                    <input id="city" type="text" name="input" value="" placeholder="city">
                     <input id="subB" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                     <div id="prognosis"> </div>
 

@@ -56,7 +56,8 @@ async function handleSubmit(event) {
 
     let formCity= document.getElementById("city").value;
     console.log("formCity=>", formCity);
-    
+    let formCountry= document.getElementById("country").value;
+    console.log("formCountry=>", formCountry);
 
     const countDownDate = new Date(formDate).getTime(); // input from the UI. but in what form
 
@@ -93,6 +94,7 @@ async function handleSubmit(event) {
     // }
     UI_Inp["formDaysLeft"]=formDaysLeft;
     UI_Inp["formCity"]=formCity;
+    UI_Inp["formCountry"]=formCountry;
     UI_Inp["newDateStart"]=newDateStart;
     UI_Inp["newDateEnd"]=newDateEnd;
     UI_Inp["lastYearDateStart"]=lastYearDateStart;
