@@ -8,10 +8,14 @@ let inputBox = {}
 async function apiCall(req, res){
     // console.log("url.req.bodyis: ");
     // console.log(req.body);
+
+    //get city//
+    let cityName = req.body.UI_Inp.formCity;
+    console.log(cityName);
     const baseUrl = "http://api.geonames.org/postalCodeSearch?" 
     console.log(baseUrl);
     const postalcode= "postalcode=G11 6rh"
-    const placename = "&placename=Glasgow";
+    const placename = `&placename=${cityName}`;  //"&placename=Glasgow";
     // const apiKey = process.env.apiKey;
     // console.log("apiKey =>", apiKey);
     const country = "&country=GB"
@@ -46,17 +50,68 @@ const response = await axios(options);
     inputBox["country"]=data.postalCodes[0].countryCode;
     // inputBox["irony"]=data.postalCodes.irony;
     console.log("inputBox =>", inputBox);
-    weatherbit(inputBox);
-    pixabay()
+    //pixabay()
+    if(req.body.UI_Inp.formDaysLeft > 16){
+        weatherbitHist(inputBox);
+    }else{
+        weatherbitForec(inputBox);
+    }
+    //pixabay()
     // return inputBox;
 }catch (error) {
     console.error(error);
   }
     }
-async function weatherbit(inputBox) { //not called yet
+async function weatherbitHist(inputBox) { 
     let inputLat= inputBox.latitude;
     let inputLong= inputBox.longitude;
     const baseUrl = "https://api.weatherbit.io/v2.0/history/daily?";
+    const key = process.env.weatherbKey; //"&key=8bd27fa25c054293935d109ab993c167";
+    let lat = `&lat=${inputLat}`; // "&lat=38.123"// This needs to be updated by the previous function
+    let long = `&lon=${inputLong}`; // "&lon=-78.543" // This needs to be updated by the previous function
+    let start_date = "&start_date=2021-09-11"; // This needs to be given by the form  
+    let end_date = "&end_date=2021-09-12"; // This needs to be given by the form
+    const url = (baseUrl+lat+long+start_date+end_date+key);
+    console.log(url);
+    let options2 = {
+        method: 'GET',
+        url: url,
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json;charset=UTF-8'
+        }
+    }
+    // return inputBox
+// 
+    const res = await axios(options2);
+    try{
+    let bitData = await res.data;
+    console.log("bitData is =>", bitData);
+    inputBox["bitData"]= bitData;
+    console.log("inputBox =>", inputBox);
+    let bitWeatherData = inputBox.bitData.data
+    console.log("bitWeatherData =>", bitWeatherData)
+
+    // let min_temp = bitWeatherData.min_temp;
+    // let max_temp = bitWeatherData.max_temp;
+    // let snow /*(if >0)*/ = bitWeatherData.snow;
+    // let clouds = bitWeatherData.clouds;
+    inputBox["min_temp"]= bitData.data[0].min_temp;
+    inputBox["max_temp"]= bitData.data[0].max_temp;
+    inputBox["snow"]= bitData.data[0].snow;
+    inputBox["clouds"]= bitData.data[0].clouds;
+    console.log("inputBox =>", inputBox);
+    
+
+} catch (error) {
+    console.error(error);
+  }
+}
+
+async function weatherbitForec(inputBox) { //not called yet
+    let inputLat= inputBox.latitude;
+    let inputLong= inputBox.longitude;
+    const baseUrl = "https://api.weatherbit.io/v2.0/forecast/daily?";
     const key = process.env.weatherbKey; //"&key=8bd27fa25c054293935d109ab993c167";
     let lat = `&lat=${inputLat}`; // "&lat=38.123"// This needs to be updated by the previous function
     let long = `&lon=${inputLong}`; // "&lon=-78.543" // This needs to be updated by the previous function

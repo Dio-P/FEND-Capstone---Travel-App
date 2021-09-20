@@ -15,7 +15,7 @@ new Litepicker({
       return totalDays - 1;
     }
   })
- 
+//  console.log(endDate)
 async function handleSubmit(event) {
     // const form = document.getElementById('form');
     // form.addEventListener('submit', logSubmit, true);
@@ -52,13 +52,13 @@ async function handleSubmit(event) {
     var timeleft = countDownDate - now;
         
     // Calculating the days, hours, minutes and seconds left
-    var days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+    let formDaysLeft = Math.floor(timeleft / (1000 * 60 * 60 * 24));
     // var hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     // var minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
     // var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
         
     // Result is output to the specific element
-    document.getElementById("days").innerHTML = days + " days remaining until your trip"
+    document.getElementById("days").innerHTML = formDaysLeft + " days remaining until your trip"
     // document.getElementById("hours").innerHTML = hours + "h " 
     // document.getElementById("mins").innerHTML = minutes + "m " 
     // document.getElementById("secs").innerHTML = seconds + "s " 
@@ -72,17 +72,24 @@ async function handleSubmit(event) {
     //     document.getElementById("secs").innerHTML = ""
     //     document.getElementById("end").innerHTML = "TIME UP!!";
     // }
-    }, 1000);
-
+    UI_Inp["days"]=formDaysLeft;
+    UI_Inp["formCity"]=formCity;
+    UI_Inp["startingDate"]=formDate;
+    
+    
+    
+    return formDaysLeft
+    }, 1000)
+    Client.postData("/UI_Inp", {UI_Inp});
+    console.log(UI_Inp);
+   
     // you need to send all to the server, in one, or seperate objects !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // CreateNURL(formText);
     // console.log("newUrl is !!!!!!!!!!!!!==>", newUrl);
     // UI_Inp["newUrl"]=newUrl;
-    UI_Inp["formCity"]=formCity;
-    UI_Inp["startingDate"]=formDate;
+    
     // UI_Inp["endData"]=endData;
-    console.log(UI_Inp);
-    Client.postData("/UI_Inp", {UI_Inp})
+    
 
 // function CreateNURL(formText){
 //     let url = new URL(formText)
