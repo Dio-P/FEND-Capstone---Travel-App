@@ -26,7 +26,20 @@ async function handleSubmit(event) {
     // let formText = document.getElementById("url").value;
     // let formDate= document.getElementById("date").value;
     let formDate= document.getElementById('datepicker').value
+    let date = formDate.split("-");
     console.log("formDate =>", formDate);
+    console.log("date =>", date);
+    let numDateYear = parseInt(date[0]);
+    let numDateMonth = parseInt(date[1]);
+    let numDateDay = parseInt(date[2]);
+    console.log(" numDateYear =>", numDateYear)
+    console.log(" numDateMonth =>", numDateMonth)
+    console.log(" numDateDay =>", numDateDay)
+    let newDateS = `${numDateYear+1}-${numDateMonth}-${numDateDay}` //.toString();
+    console.log("newDateS=>", newDateS);
+
+    
+
 
     // let date = formDate.split(' ');
     // console.log(date);
