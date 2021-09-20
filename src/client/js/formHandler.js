@@ -35,8 +35,14 @@ async function handleSubmit(event) {
     console.log(" numDateYear =>", numDateYear)
     console.log(" numDateMonth =>", numDateMonth)
     console.log(" numDateDay =>", numDateDay)
-    let newDateS = `${numDateYear+1}-${numDateMonth}-${numDateDay}` //.toString();
-    console.log("newDateS=>", newDateS);
+    let newDateStart = `${numDateYear}-${numDateMonth}-${numDateDay}`
+    let newDateEnd = `${numDateYear}-${numDateMonth}-${numDateDay+1}`
+    let lastYearDateStart = `${numDateYear-1}-${numDateMonth}-${numDateDay}` //.toString();
+    let lastYearDateEnd = `${numDateYear-1}-${numDateMonth}-${numDateDay+1}`
+    console.log("newDateStart=>", newDateStart);
+    console.log("newDateEnd=>", newDateEnd);
+    console.log("lastYearDateStart=>", lastYearDateStart);
+    console.log("lastYearDateEnd=>", lastYearDateEnd);
 
     
 
@@ -50,12 +56,12 @@ async function handleSubmit(event) {
 
     let formCity= document.getElementById("city").value;
     console.log("formCity=>", formCity);
-    alert(UI_Inp);
+    
 
     const countDownDate = new Date(formDate).getTime(); // input from the UI. but in what form
 
     // Run myfunc every second
-    const myfunc = setInterval(function() {
+    const myfunc = setTimeout(function() {
 
     const now = new Date().getTime();
   
@@ -85,17 +91,26 @@ async function handleSubmit(event) {
     //     document.getElementById("secs").innerHTML = ""
     //     document.getElementById("end").innerHTML = "TIME UP!!";
     // }
-    UI_Inp["days"]=formDaysLeft;
+    UI_Inp["formDaysLeft"]=formDaysLeft;
     UI_Inp["formCity"]=formCity;
-    UI_Inp["startingDate"]=formDate;
-    
-    
-    
-    return formDaysLeft
-    }, 1000)
+    UI_Inp["newDateStart"]=newDateStart;
+    UI_Inp["newDateEnd"]=newDateEnd;
+    UI_Inp["lastYearDateStart"]=lastYearDateStart;
+    UI_Inp["lastYearDateEnd"]=lastYearDateEnd;
+    console.log("UI_Inp=>", UI_Inp);
     Client.postData("/UI_Inp", {UI_Inp});
-    console.log(UI_Inp);
-   
+    console.log("UI_Inp =>", UI_Inp);
+    // alert(UI_Inp);
+    clearInterval()
+    
+    return (UI_Inp);
+    }, 0)
+    
+    
+      
+  
+    
+    
     // you need to send all to the server, in one, or seperate objects !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // CreateNURL(formText);
     // console.log("newUrl is !!!!!!!!!!!!!==>", newUrl);
