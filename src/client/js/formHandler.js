@@ -97,7 +97,6 @@ async function handleSubmit(event) {
     UI_Inp["newDateEnd"]=newDateEnd;
     UI_Inp["lastYearDateStart"]=lastYearDateStart;
     UI_Inp["lastYearDateEnd"]=lastYearDateEnd;
-    console.log("UI_Inp=>", UI_Inp);
     Client.postData("/UI_Inp", {UI_Inp});
     console.log("UI_Inp =>", UI_Inp);
     // alert(UI_Inp);
@@ -135,11 +134,14 @@ const respons= await axios.get('http://localhost:3000/results')
         let ClInputBox = await respons.data;
         console.log("ClInputBox!!!!!!!! ==>", ClInputBox);
         let imgURL = ClInputBox.webformatURL;
+        let min_temp = ClInputBox.min_temp;
+        let max_temp = ClInputBox.max_temp;
         console.log("imgURL!!!!!!!! ==>", imgURL);
         document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}"></img>`
+        document.getElementById("prognosis").innerHTML = `the minimum temperature will be ${min_temp} <br> the maximum temperature will be ${max_temp}`
         // console.log("agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony);
         // document.getElementById('results').innerHTML = "agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony 
-        // return response
+        // return response min_temp":12.8,"max_temp"
     }catch(error){
         console.log("error", error);
     }
