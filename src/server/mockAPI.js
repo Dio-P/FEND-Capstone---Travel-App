@@ -18,7 +18,7 @@ async function apiCall(req, res){
     const maxRows = "&maxRows=10";
     // let nUrl = req.body.data.newUrl;
     // console.log("url =>", nUrl);
-    const username = "&username=dio_papa";
+    const username = process.env.geoUserN; // "&username=dio_papa";
     const URL = (baseUrl+postalcode+placename+country+maxRows+username);
     console.log("URl =>", URL);
     let url = encodeURI(URL);
@@ -57,7 +57,7 @@ async function weatherbit(inputBox) { //not called yet
     let inputLat= inputBox.latitude;
     let inputLong= inputBox.longitude;
     const baseUrl = "https://api.weatherbit.io/v2.0/history/daily?";
-    const key = "&key=8bd27fa25c054293935d109ab993c167"; //needs to go into envyronment!!;
+    const key = process.env.weatherbKey; //"&key=8bd27fa25c054293935d109ab993c167";
     let lat = `&lat=${inputLat}`; // "&lat=38.123"// This needs to be updated by the previous function
     let long = `&lon=${inputLong}`; // "&lon=-78.543" // This needs to be updated by the previous function
     let start_date = "&start_date=2021-09-11"; // This needs to be given by the form  
@@ -103,7 +103,7 @@ async function pixabay(req,res){
     let cityName= "Glasgow"; //how is it going to get the name from the client? Get or mod exp from server?
     // console.log("baixabay runs")
     const baseUrl = "https://pixabay.com/api/?";
-    const key = "key=23402174-d80a0bf663b43f42c0300decb";
+    const key = process.env.pixabayKey; //"key=23402174-d80a0bf663b43f42c0300decb";   
     let searcn = `&q=${cityName}+city`;  //"&p=Glasgow";
     const image_type = "&image_type=photo";
     // const editors_choice = "&editors_choice=true";
