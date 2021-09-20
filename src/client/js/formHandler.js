@@ -138,9 +138,27 @@ const respons= await axios.get('http://localhost:3000/results')
         let imgURL = ClInputBox.webformatURL;
         let min_temp = ClInputBox.min_temp;
         let max_temp = ClInputBox.max_temp;
+        // countries info declarations
+
+        //adding dots
+        let population = ClInputBox.population;
+        let area = ClInputBox.area;
+                    //this is what I am working now !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // let DotPopulation = population.split('');
+        // console.log(DotPopulation);
+        // let DotArea = area.split('');
+        // console.log(DotArea);
+
+        let OfficialName = ClInputBox.OfficialName;
+        let callingCodes = ClInputBox.callingCodes;
+        let capital = ClInputBox.capital;
+        let region = ClInputBox.region;
+        let subregion = ClInputBox.subregion;
+        //Updating the U.I. elements
         console.log("imgURL!!!!!!!! ==>", imgURL);
         document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}"></img>`
         document.getElementById("prognosis").innerHTML = `the minimum temperature will be ${min_temp} <br> the maximum temperature will be ${max_temp}`
+        document.getElementById("results").innerHTML = `Official Name = ${OfficialName} <br> Calling Code = ${callingCodes} <br> Capital City = ${capital} <br> Region = ${region} <br> Subregion = ${subregion} <br> Population = ${population} millions <br> Area = ${area} square meters`
         // console.log("agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony);
         // document.getElementById('results').innerHTML = "agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony 
         // return response min_temp":12.8,"max_temp"
