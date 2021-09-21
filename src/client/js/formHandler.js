@@ -154,11 +154,21 @@ const respons= await axios.get('http://localhost:3000/results')
         let capital = ClInputBox.capital;
         let region = ClInputBox.region;
         let subregion = ClInputBox.subregion;
+        let formDaysLeft = ClInputBox.formDaysLeft
         //Updating the U.I. elements
         console.log("imgURL!!!!!!!! ==>", imgURL);
         document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}"></img>`
-        document.getElementById("prognosis").innerHTML = `Min. Temperature : ${min_temp} <br> Max. Temperature : ${max_temp}`
         document.getElementById("results").innerHTML = `-Official Name : ${OfficialName} <br> -Calling Code : ${callingCodes} <br> -Capital City : ${capital} <br> -Region : ${region} <br> -Subregion : ${subregion} <br> -Population : ${population} millions <br> -Area : ${area} square meters`
+        document.getElementById("pixabayLogoBox").innerHTML = `<img id="pixabayLogoImg" src="https://pixabay.com/static/img/public/leaderboard_a.png" alt="Pixabay">`
+       
+        if(formDaysLeft> 16){
+          document.getElementById("prognosis").innerHTML = `A typical weather for then is: <br> Min: ${min_temp} <br> Max: ${max_temp}`
+        }else{
+          document.getElementById("prognosis").innerHTML = `Min. Temperature : ${min_temp} <br> Max. Temperature : ${max_temp}`
+        }
+        // https://api.weatherbit.io/v2.0/forecast/daily?&lat=55.83214101661675&lon=-4.170513977759842&start_date=2021-9-29&start_date=2021-9-30&key=8bd27fa25c054293935d109ab993c167
+        // https://api.weatherbit.io/v2.0/history/daily?&lat=55.850058302483156&lon=-4.095037092881232&start_date=2020-10-29&start_date=2020-10-30&key=8bd27fa25c054293935d109ab993c167
+        // https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2021-09-17&end_date=2021-09-18&key=API_KEY
         // console.log("agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony);
         // document.getElementById('results').innerHTML = "agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony 
         // return response min_temp":12.8,"max_temp"

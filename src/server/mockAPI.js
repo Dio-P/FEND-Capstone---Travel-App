@@ -22,7 +22,8 @@ async function apiCall(req, res){
     let newDateStart = req.body.data.UI_Inp.newDateStart;
     let newDateEnd = req.body.data.UI_Inp.newDateEnd;
     let lastYearDateStart = req.body.data.UI_Inp.lastYearDateStart;
-    let lastYearDateEnd = req.body.data.UI_Inp.lastYearDateEnd
+    let lastYearDateEnd = req.body.data.UI_Inp.lastYearDateEnd;
+    let formDaysLeft = req.body.data.UI_Inp.formDaysLeft;
     console.log("cityName=>",cityName);
     const baseUrl = "http://api.geonames.org/postalCodeSearch?" 
     console.log(baseUrl);
@@ -63,10 +64,10 @@ const response = await axios(options);
     // inputBox["irony"]=data.postalCodes.irony;
     // console.log("inputBox =>", inputBox); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //pixabay()
-    if(req.body.data.UI_Inp.formDaysLeft > 16){
-        weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDateEnd, countryCode);
+    if(formDaysLeft > 16){
+        weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDateEnd, countryCode, formDaysLeft);
     }else{
-        weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, countryCode);
+        weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, countryCode, formDaysLeft);
     }
     //pixabay()
     // return inputBox;
@@ -74,7 +75,7 @@ const response = await axios(options);
     console.error(error);
   }
     }
-async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDateEnd, countryCode) { 
+async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDateEnd, countryCode, formDaysLeft) { 
     let inputLat= inputBox.latitude;
     let inputLong= inputBox.longitude;
     const baseUrl = "https://api.weatherbit.io/v2.0/history/daily?";
@@ -112,6 +113,7 @@ async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDat
     inputBox["max_temp"]= bitData.data[0].max_temp;
     inputBox["snow"]= bitData.data[0].snow;
     inputBox["clouds"]= bitData.data[0].clouds;
+    inputBox["formDaysLeft"]=formDaysLeft;
     // console.log("inputBox =>", inputBox);
     pixabay(cityName);
     restcountries(countryCode)
@@ -121,7 +123,7 @@ async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDat
   }
 }
  
-async function weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, countryCode) { //not called yet
+async function weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, countryCode, formDaysLeft) { //not called yet
     let inputLat= inputBox.latitude;
     let inputLong= inputBox.longitude;
     const baseUrl = "https://api.weatherbit.io/v2.0/forecast/daily?";
@@ -145,7 +147,7 @@ async function weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, cou
     const res = await axios(options2);
     try{
     let bitData = await res.data;
-    console.log("bitForcData is =>", bitData);
+    // console.log("bitForcData is =>", bitData);
     // inputBox["bitData"]= bitData;
     // console.log("inputBox =>", inputBox); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // let bitWeatherData = inputBox.bitData.data
@@ -159,6 +161,7 @@ async function weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, cou
     inputBox["max_temp"]= bitData.data[0].max_temp;
     inputBox["snow"]= bitData.data[0].snow;
     inputBox["clouds"]= bitData.data[0].clouds;
+    inputBox["formDaysLeft"]=formDaysLeft;
     // console.log("inputBox =>", inputBox); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     pixabay(cityName);
     restcountries(countryCode)
@@ -198,6 +201,7 @@ const resp = await axios(options3);
     try{
     let pixabayData = await resp.data;
     let webformatURL = pixabayData.hits[0].webformatURL
+    console.log("pixabayData.hits[0]",pixabayData.hits[0]);
     inputBox["webformatURL"]= webformatURL;
     return webformatURL;
 } catch (error) {
