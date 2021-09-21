@@ -78,7 +78,7 @@ async function handleSubmit(event) {
     // var seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
         
     // Result is output to the specific element
-    document.getElementById("days").innerHTML = formDaysLeft + " days remaining until your trip"
+    document.getElementById("days").innerHTML = "There are " + formDaysLeft + " days remaining until your trip."
     // document.getElementById("hours").innerHTML = hours + "h " 
     // document.getElementById("mins").innerHTML = minutes + "m " 
     // document.getElementById("secs").innerHTML = seconds + "s " 
@@ -157,8 +157,8 @@ const respons= await axios.get('http://localhost:3000/results')
         //Updating the U.I. elements
         console.log("imgURL!!!!!!!! ==>", imgURL);
         document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}"></img>`
-        document.getElementById("prognosis").innerHTML = `the minimum temperature will be ${min_temp} <br> the maximum temperature will be ${max_temp}`
-        document.getElementById("results").innerHTML = `Official Name = ${OfficialName} <br> Calling Code = ${callingCodes} <br> Capital City = ${capital} <br> Region = ${region} <br> Subregion = ${subregion} <br> Population = ${population} millions <br> Area = ${area} square meters`
+        document.getElementById("prognosis").innerHTML = `Min. Temperature : ${min_temp} <br> Max. Temperature : ${max_temp}`
+        document.getElementById("results").innerHTML = `-Official Name : ${OfficialName} <br> -Calling Code : ${callingCodes} <br> -Capital City : ${capital} <br> -Region : ${region} <br> -Subregion : ${subregion} <br> -Population : ${population} millions <br> -Area : ${area} square meters`
         // console.log("agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony);
         // document.getElementById('results').innerHTML = "agreement : "+ response.agreement +"  subjectivity : "+ response.subjectivity+"  confidence : "+response.confidence+"  irony : "+response.irony 
         // return response min_temp":12.8,"max_temp"

@@ -24,31 +24,33 @@
 
         <main>
             <section>
-                <!-- <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="url" type="text" name="input" value="" onblur="onBlur()" placeholder="Url">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-                </form> -->
-                <div class=card id=card1>
-                    <div id="title">Travel Planner</div>
-                    <p id="days"> </p>
-                    <!-- <label for="datepicker">Date</label> -->
-                    <input id="datepicker" class="form-control"  placeholder="Pick a date" readonly="">
-                    <div id= "imgHolder"></div>
-                    
-                    <div id="geog">
-                        <input id="city" type="text" name="input" value="" placeholder="City">
-                        <input id="country" type="text" name="input" value="" placeholder="Country Code initials (ex: GB, US)">
+                <div id="cardBoard">
+                    <div class=card id=cardImg>
+                        <div id="title">Travel Planner</div>
+                        <div id= "imgHolder"></div>
                     </div>
-                    <!-- <input id="date" type="text" name="input" value="" placeholder="date"> -->
-                    <input id="subB" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-                    <div id="prognosis"> </div>
 
+                    <div class=card id=cardInput>
+                        <div id="FirstInfoBox">
+                            <p id="days"> </p>
+                            <div id="prognosis"> </div>
+                        </div>
+                        <div id="inputBoxs">
+                            <!-- <input id="datepicker" class="form-control"  placeholder="Pick a date" readonly=""> -->
+                            <input id="datepicker" class="UI-inp-element"  placeholder="Pick a date" readonly="">
+                            <input id="country" type="text" name="input" value="" placeholder="Country Code initials (ex: GB, US)">
+                            <input id="city" type="text" name="input" value="" placeholder="City">
+                        </div>
+                        <div id="subBBox">
+                            <input id="subB" type="submit" name="" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                        </div>
+                    </div>
+
+                    <div class=card id=cardInfo>
+                        <div id="resulTitl">Information about the Country</div>
+                        <div id="results"></div>
+                    </div>
                 </div>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
-            </section>
         </main>
 
         <footer>
