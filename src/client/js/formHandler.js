@@ -141,13 +141,21 @@ const respons= await axios.get('http://localhost:3000/results')
         // countries info declarations
 
         //adding dots
-        let population = ClInputBox.population;
-        let area = ClInputBox.area;
-                    //this is what I am working now !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // let DotPopulation = population.split('');
-        // console.log(DotPopulation);
-        // let DotArea = area.split('');
+        let population = ClInputBox.population.toLocaleString() + "";
+        console.log("population=>", population);
+        let area = ClInputBox.area.toLocaleString() + "";
+        console.log("area=>", area);
+        // function DotPopulate(population, area){
+        //               // this is what I am working now !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // console.log("Inside The function")
+        // console.log("population=>", population.toLocaleString());
+        // console.log("area=>", area.toLocaleString());
+        // let DotPopulation = population.split("");
+        // console.log("DotPopulation=>", DotPopulation);
+        // let DotArea = area.split("");
         // console.log(DotArea);
+        // }
+        // const DotPopulated = DotPopulate(population, area)
 
         let OfficialName = ClInputBox.OfficialName;
         let callingCodes = ClInputBox.callingCodes;
@@ -158,7 +166,7 @@ const respons= await axios.get('http://localhost:3000/results')
         //Updating the U.I. elements
         console.log("imgURL!!!!!!!! ==>", imgURL);
         document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}"></img>`
-        document.getElementById("results").innerHTML = `-Official Name : ${OfficialName} <br> -Calling Code : ${callingCodes} <br> -Capital City : ${capital} <br> -Region : ${region} <br> -Subregion : ${subregion} <br> -Population : ${population} millions <br> -Area : ${area} square meters`
+        document.getElementById("results").innerHTML = `-Official Name : ${OfficialName} <br> -Calling Code : ${callingCodes} <br> -Capital City : ${capital} <br> -Region : ${region} <br> -Subregion : ${subregion} <br> -Population : ${population} millions <br> -Area : ${area} km²`
         document.getElementById("pixabayLogoBox").innerHTML = `<img id="pixabayLogoImg" src="https://pixabay.com/static/img/public/leaderboard_a.png" alt="Pixabay">`
        
         if(formDaysLeft> 16){
