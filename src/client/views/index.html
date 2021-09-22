@@ -11,7 +11,9 @@
               element: document.getElementById('date') 
             });
           </script>
-          <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+          <script
+          src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyAqVcesCIGKRenj9rGahbuLghiOhuWjgpo&libraries=places"></script>
+          <!-- <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script> -->
     </head>
 
     <body>
@@ -45,6 +47,7 @@
                             <input id="datepicker" class="UI-inp-element"  placeholder="Pick a date" readonly="">
                             <input id="country" type="text" name="input" value="" placeholder="Country Code initials (ex: GB, US)">
                             <input id="city" type="text" name="input" value="" placeholder="City">
+                            <!-- <input id="city" type="text" name="input" value="" placeholder="City"> -->
                         </div>
                         <div id="subBBox">
                             <input id="subB" type="submit" name="" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">

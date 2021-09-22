@@ -15,6 +15,12 @@ new Litepicker({
       return totalDays - 1;
     }
   })
+
+  function initialize() {
+    var input = document.getElementById('city');
+    new google.maps.places.Autocomplete(input);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
 //  console.log(endDate)
 async function handleSubmit(event) {
     // const form = document.getElementById('form');
@@ -54,7 +60,9 @@ async function handleSubmit(event) {
     // let endData = date[2];
     // console.log("endData =>", endData);
 
-    let formCity= document.getElementById("city").value;
+    let formCityBoth= document.getElementById("city").value.split(",");
+    console.log("formCityBoth", formCityBoth)
+    let formCity = formCityBoth[0];
     console.log("formCity=>", formCity);
     let formCountry= document.getElementById("country").value;
     console.log("formCountry=>", formCountry);
