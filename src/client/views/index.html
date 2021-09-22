@@ -15,7 +15,6 @@
           src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyAqVcesCIGKRenj9rGahbuLghiOhuWjgpo&libraries=places"></script> -->
           <!-- <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script> -->
           <script>
-            autocomplete(document.getElementById("country"), countries);
             </script>
     </head>
 
@@ -48,11 +47,7 @@
                         <div id="inputBoxs">
                             <!-- <input id="datepicker" class="form-control"  placeholder="Pick a date" readonly=""> -->
                             <input id="datepicker" class="UI-inp-element"  placeholder="Pick a date" readonly="">
-                            <form autocomplete="off" action="/action_page.php">
-                            <input class="autocomplete"  id="country" type="text" name="input" placeholder="Country Code initials (ex: GB, US)">
-                                <!-- <input type="submit"> -->
-                            </form>
-                            <!-- <input id="country" type="text" name="input" value="" placeholder="Country Code initials (ex: GB, US)"> -->
+                            <input id="country" type="text" name="input" value="" placeholder="Country Code initials (ex: GB, US)">
                             <input id="city" type="text" name="input" value="" placeholder="City">
                         </div>
                         <div id="subBBox">
