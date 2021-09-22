@@ -28,6 +28,7 @@ new Litepicker({
 async function handleSubmit(event) {
     
     event.preventDefault()
+    document.getElementById("country").classList.remove('error');
     // Get date
     let formDate= document.getElementById('datepicker').value
     // turn the date into something that you can use flexibly
@@ -57,8 +58,12 @@ async function handleSubmit(event) {
     // isolate only the city from the city/country that is produced when using google autofill
     let formCity = formCityBoth[0];
     console.log("formCity=>", formCity);
-    let formCountry= document.getElementById("country").value;
+    // let formCountry= document.getElementById("country").value;
+    let formCountry= getCountry();
+    // getCountry(formCountry);
     console.log("formCountry=>", formCountry);
+    //////////////////////////////////////////////////////////////////////////////////////////
+
     // create a new Date to have against now
     const countDownDate = new Date(formDate).getTime();
     // get the days remaining from now to the chosen date
@@ -85,7 +90,7 @@ async function handleSubmit(event) {
     }, 0)
 
 
-    // this is the second part. From here on we do with the information that has allready been processed by the sever.
+    // this is the second part. From here on we do with the information that has allready been processed by the server to update the U.I.
     // async axios call to the server 
 const respons= await axios.get('http://localhost:3000/results')
     try {
@@ -123,5 +128,23 @@ const respons= await axios.get('http://localhost:3000/results')
         console.log("error", error);
     }
 }
+function getCountry(){
+  let formTheCountry= document.getElementById("country").value + "";
+
+  console.log("function working")
+  console.log("formTheCountry=>", formTheCountry.length);
+  if(formTheCountry.length >2){
+    document.getElementById("country").classList.add('error');
+    alert("Error! Country value needs to be only two letters");
+    throw new Error("Error! Country value needs to be only two letters");
+  }else if(formTheCountry.length <2){
+    document.getElementById("country").classList.add('error');
+    alert("Error! Country value needs to be atleast two letters");
+    throw new Error("Error! Country value needs to be atleast two letters");
+  }else{
+    return formTheCountry
+  }
+}
+
 // exporting our main function.
 export { handleSubmit }
