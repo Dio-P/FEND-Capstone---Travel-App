@@ -2,6 +2,8 @@
 import { handleSubmit } from './js/formHandler'
 import { postData } from './js/postFunc'
 import Litepicker from 'litepicker';
+import { countryListAlpha2 } from "./js/Countries";
+import { autocomplete } from "./js/AutoCountries";
 
 
 import './styles/resets.scss'
@@ -14,5 +16,7 @@ export {
 
     handleSubmit,
     postData,
-    Litepicker
+    Litepicker,
+    countryListAlpha2,
+    autocomplete
 }
