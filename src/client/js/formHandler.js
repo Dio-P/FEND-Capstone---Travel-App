@@ -16,13 +16,17 @@ new Litepicker({
     }
   })
 
-// To be activated later on !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  // //google autofill
-  // function initialize() {
-  //   var input = document.getElementById('city');
-  //   new google.maps.places.Autocomplete(input);
-  // }
-  // google.maps.event.addDomListener(window, 'load', initialize);
+//To be activated later on !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //google autofill
+  function initialize() {
+//to show only cities
+    var options = {
+      types: ['(cities)']
+     };
+    var input = document.getElementById('city');
+    new google.maps.places.Autocomplete(input);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
 
 // our main function, trigered by the form submit
 async function handleSubmit(event) {
