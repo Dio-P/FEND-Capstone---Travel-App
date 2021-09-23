@@ -16,17 +16,17 @@ new Litepicker({
     }
   })
 
-//To be activated later on !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  //google autofill
-  function initialize() {
-//to show only cities
-    var options = {
-      types: ['(cities)']
-     };
-    var input = document.getElementById('city');
-    new google.maps.places.Autocomplete(input);
-  }
-  google.maps.event.addDomListener(window, 'load', initialize);
+// //To be activated later on !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//   //google autofill
+//   function initialize() {
+// //to show only cities
+//     var options = {
+//       types: ['(cities)']
+//      };
+//     var input = document.getElementById('city');
+//     new google.maps.places.Autocomplete(input);
+//   }
+//   google.maps.event.addDomListener(window, 'load', initialize);
 
 // our main function, trigered by the form submit
 async function handleSubmit(event) {
@@ -62,9 +62,8 @@ async function handleSubmit(event) {
     // isolate only the city from the city/country that is produced when using google autofill
     let formCity = formCityBoth[0];
     console.log("formCity=>", formCity);
-    // let formCountry= document.getElementById("country").value;
+    // let formCountry leads to and error handling function at the end of this file
     let formCountry= getCountry();
-    // getCountry(formCountry);
     console.log("formCountry=>", formCountry);
     //////////////////////////////////////////////////////////////////////////////////////////
 
@@ -132,6 +131,7 @@ const respons= await axios.get('http://localhost:3000/results')
         console.log("error", error);
     }
 }
+// error handling function in the case that the country box has under or more the three digits
 function getCountry(){
   let formTheCountry= document.getElementById("country").value + "";
 
