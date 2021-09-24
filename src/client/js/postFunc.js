@@ -1,5 +1,5 @@
 const axios = require('axios').default;
-
+// A simple post function
 async function postData( url = " ", data = {}){
   try {
     const response = await axios.post(url, {data})

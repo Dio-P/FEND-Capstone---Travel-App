@@ -1,4 +1,4 @@
-<script>
+{/* <script>
               let autocomplete;
               function initAutocomplete(){
                   autocomplete = new google.maps.places.Autocomplete(
@@ -23,4 +23,4 @@
           </script>
           <script 
           src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer>
-        </script>
+        </script> */}

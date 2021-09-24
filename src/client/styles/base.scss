@@ -2,6 +2,7 @@
 $primary-box-color: #ebc994;
 $primary-info-type-color: black; 
 $secondary-type-color:#B80C4D;
+$hover-color: yellow;
 $title-font-s: 38px;
 $days-font-s: 30px;
 $temp-font-s: 25px;
@@ -56,30 +57,18 @@ section {
             background-color: $primary-box-color;
             color:$primary-info-type-color;
             display: grid;
-            // grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            // display: flex;
-            // flex-direction: column;
-            // filter:drop-shadow(10px 10px 4px #b0b0b0);
             border-radius: 40px;
-            // height: 500px;
             height: 100%;
             width: 350px;
-            // margin-bottom: 20px;
-            // margin-top: 20px;
             text-align: center;
             align-content: center;
             align-items: center;
             align-self: auto;
-            // padding: 10px;
-            // padding-top: ;
             padding-bottom: 20px;
             padding-right: 20px;
             padding-left: 20px;
-            // padding: 0px 20px 20px 20px;
-            // width: 100%;
             line-height: 16px;
-            // margin: 10px 0 0 0;
         }
     }
 
@@ -111,7 +100,6 @@ section {
 
         #mainImg{
             width: 95%;
-            // height: 90%;
             background-position: center;
             border-radius: 10px;
         }
@@ -120,13 +108,11 @@ section {
 
     #cardInput{
         grid-area: 5/1/10/1;
-        // display: flex;
         text-align: center;
         align-content: center;
         margin-top: 60px;
         
         #FirstInfoBox{
-            background-color: #fff;
             grid-area: 1/1/5/1;
             border-radius: 10px;
             padding-top: 0px;
@@ -159,10 +145,7 @@ section {
             text-align: center;
             align-content: center;
             align-items: center;
-            // align-self: auto;
-            // padding: 10px; 
             padding: 5px 20px;
-            // width: 100%;
             line-height: 16px;
             margin: 10px 0;
             margin-bottom: 30px;
@@ -182,24 +165,32 @@ section {
                 font-size: 23px;
                 text-align: center;
                 border-radius: 40px;
+                &:hover{
+                    background-color: $hover-color;
+                } 
             }
 
             #country{
                 width: 210px;
                 text-align: center;
                 border-radius: 40px;
+                &:hover{
+                    background-color: $hover-color;
+                } 
             }
             
             #city {
                 width: 160px;
                 text-align: center;
                 border-radius: 40px;
+                &:hover{
+                    background-color: $hover-color;
+                } 
             }
 
         }
 
         .btncls{
-            // background-color:#B80C4D;
             border: #2e6da4;
             font-family: Arial, Geneva, Arial, Helvetica,  sans-serif;
             font-size: 25px;
@@ -227,8 +218,10 @@ section {
             height: 60px;
             text-align: center;
             border-radius: 40px;
-            
-            
+            &:hover{
+                background-color: $hover-color;
+            } 
+             
         }
 
     }
@@ -237,7 +230,6 @@ section {
         grid-area: 11/1/13/1;
         padding-top: 40px;
         padding-bottom: 50px;
-        // margin-top: 80px;
         margin-top: -10px;
         
 
@@ -246,6 +238,10 @@ section {
             font-size: $days-font-s;
             line-height: 30px;
             margin-top: -45px;
+        }
+
+        #flagLink{
+            width: 80%;
         }
 
         #results{
@@ -273,30 +269,18 @@ section {
             background-color: $primary-box-color;
             color:$primary-info-type-color;
             display: grid;
-            // grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            // display: flex;
-            // flex-direction: column;
-            // filter:drop-shadow(10px 10px 4px #b0b0b0);
             border-radius: 40px;
-            // height: 500px;
             height: 100%;
             width: 350px;
-            // margin-bottom: 20px;
-            // margin-top: 20px;
             text-align: center;
             align-content: center;
             align-items: center;
             align-self: auto;
-            // padding: 10px;
-            // padding-top: ;
             padding-bottom: 20px;
             padding-right: 20px;
             padding-left: 20px;
-            // padding: 0px 20px 20px 20px;
-            // width: 100%;
             line-height: 16px;
-            // margin: 10px 0 0 0;
         }
     }
 
@@ -326,24 +310,19 @@ section {
             background-position: center;
         }
 
-        #mainImg{
-            width: 95%;
-            // height: 90%;
-            background-position: center;
-            border-radius: 10px;
+        #flagImg{
+            width: 50%;
         }
 
     }
 
     #cardInput{
         grid-area: 5/2/10/3;
-        // display: flex;
         text-align: center;
         align-content: center;
         margin-top: 60px;
         
         #FirstInfoBox{
-            background-color: #fff;
             grid-area: 1/1/5/1;
             border-radius: 10px;
             padding-top: 0px;
@@ -376,10 +355,7 @@ section {
             text-align: center;
             align-content: center;
             align-items: center;
-            // align-self: auto;
-            // padding: 10px; 
             padding: 5px 20px;
-            // width: 100%;
             line-height: 16px;
             margin: 10px 0;
             margin-bottom: 30px;
@@ -399,24 +375,32 @@ section {
                 font-size: 23px;
                 text-align: center;
                 border-radius: 40px;
+                &:hover{
+                    background-color: $hover-color;
+                } 
             }
 
             #country{
                 width: 210px;
                 text-align: center;
                 border-radius: 40px;
+                &:hover{
+                    background-color: $hover-color;
+                } 
             }
             
             #city {
                 width: 160px;
                 text-align: center;
                 border-radius: 40px;
+                &:hover{
+                    background-color: $hover-color;
+                } 
             }
 
         }
 
         .btncls{
-            // background-color:#B80C4D;
             border: #2e6da4;
             font-family: Arial, Geneva, Arial, Helvetica,  sans-serif;
             font-size: 25px;
@@ -444,10 +428,11 @@ section {
             height: 60px;
             text-align: center;
             border-radius: 40px;
-            
-            
+            &:hover{
+                background-color: $hover-color;
+            } 
+     
         }
-
     }
 
     #cardInfo{
@@ -462,6 +447,10 @@ section {
             font-size: $days-font-s;
             line-height: 30px;
             margin-top: -45px;
+        }
+
+        #flagImg{
+            width: 50%;
         }
 
         #results{
@@ -490,30 +479,18 @@ section {
             background-color: $primary-box-color;
             color:$primary-info-type-color;
             display: grid;
-            // grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            // display: flex;
-            // flex-direction: column;
-            // filter:drop-shadow(10px 10px 4px #b0b0b0);
             border-radius: 40px;
-            // height: 500px;
             height: 100%;
             width: 350px;
-            // margin-bottom: 20px;
-            // margin-top: 20px;
             text-align: center;
             align-content: center;
             align-items: center;
             align-self: auto;
-            // padding: 10px;
-            // padding-top: ;
             padding-bottom: 20px;
             padding-right: 20px;
             padding-left: 20px;
-            // padding: 0px 20px 20px 20px;
-            // width: 100%;
             line-height: 16px;
-            // margin: 10px 0 0 0;
         }
     }
 
@@ -544,7 +521,6 @@ section {
 
         #mainImg{
             width: 95%;
-            // height: 90%;
             background-position: center;
             border-radius: 10px;
         }
@@ -553,12 +529,10 @@ section {
 
     #cardInput{
         grid-area: 1/2/6/3;
-        // display: flex;
         text-align: center;
         align-content: center;
         
         #FirstInfoBox{
-            background-color: #fff;
             grid-area: 1/1/5/1;
             border-radius: 10px;
             padding-top: 0px;
@@ -591,10 +565,7 @@ section {
             text-align: center;
             align-content: center;
             align-items: center;
-            // align-self: auto;
-            // padding: 10px; 
             padding: 5px 20px;
-            // width: 100%;
             line-height: 16px;
             margin: 10px 0;
             margin-bottom: 30px;
@@ -614,24 +585,32 @@ section {
                 font-size: 23px;
                 text-align: center;
                 border-radius: 40px;
+                &:hover{
+                    background-color: $hover-color;
+                }  
             }
 
             #country{
                 width: 210px;
                 text-align: center;
                 border-radius: 40px;
+                &:hover{
+                    background-color: $hover-color;
+                }  
             }
             
             #city {
                 width: 160px;
                 text-align: center;
                 border-radius: 40px;
+                &:hover{
+                    background-color: $hover-color;
+                }   
             }
 
         }
 
         .btncls{
-            // background-color:#B80C4D;
             border: #2e6da4;
             font-family: Arial, Geneva, Arial, Helvetica,  sans-serif;
             font-size: 25px;
@@ -658,13 +637,16 @@ section {
             width: 210px;
             height: 60px;
             text-align: center;
-            border-radius: 40px;            
+            border-radius: 40px;
+            &:hover{
+                background-color: $hover-color;
+            }            
         }
 
     }
 
     #cardInfo{
-        grid-area: 6/1/8/2;
+        grid-area: 6/1/9/2;
         padding-top: 40px;
         padding-bottom: 50px;
         margin-top: -70px;
@@ -676,8 +658,16 @@ section {
             margin-top: -45px;
         }
 
+        #flagImgHolder{
+
+            #flagImg{
+                grid-area: 4/1/6/1;
+                width: 50%;
+            }
+        }
+
         #results{
-            grid-area: 4/1/9/1;
+            grid-area: 6/1/9/1;
             font-size: $info-font-s;
             text-align: left;
             line-height: 20px;

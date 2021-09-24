@@ -96,19 +96,21 @@ async function handleSubmit(event) {
     // this is the second part. From here on we do with the information that has allready been processed by the server to update the U.I.
     // async axios call to the server 
 const respons= await axios.get('http://localhost:3000/results')
+.then(async function(respons){
+  let ClInputBox = await respons.data;
+  console.log("ClInputBox!!!!!!!! ==>", ClInputBox);
+  return ClInputBox})
+  .then(ClInputBox=>{
     try {
-        console.log("respons =>",respons);
-        let ClInputBox = await respons.data;
-        console.log("ClInputBox!!!!!!!! ==>", ClInputBox);
+        // console.log("respons =>",respons);
+        // let ClInputBox = await respons.data;
+        // console.log("ClInputBox!!!!!!!! ==>", ClInputBox);
         // from our data we are declaring those that we need to update the first box of our U.I. with the min and max temperature
         let imgURL = ClInputBox.webformatURL;
         let min_temp = ClInputBox.min_temp;
         let max_temp = ClInputBox.max_temp;
         // adding some dots to the population and area values to seem more natural to the eye
-        let population = ClInputBox.population.toLocaleString() + "";
-        console.log("population=>", population);
         let area = ClInputBox.area.toLocaleString() + "";
-        console.log("area=>", area);
         // declaring the second set of info we need for the second box with the information about the country
         let OfficialName = ClInputBox.OfficialName;
         let callingCodes = ClInputBox.callingCodes;
@@ -116,10 +118,27 @@ const respons= await axios.get('http://localhost:3000/results')
         let region = ClInputBox.region;
         let subregion = ClInputBox.subregion;
         let formDaysLeft = ClInputBox.formDaysLeft
+        let flagLink = ClInputBox.flagLink ///////////////////////////////////////////////
         // updating the U.I.
+
+        // inputBox["OfficialName"]= restcountriesData[0].name.official;
+        // // inputBox["callingCodes"]= restcountriesData.callingCodes;
+        // inputBox["capital"]= restcountriesData[0].capital[0];
+        // console.log("inputBox=>", inputBox)
+        // inputBox["region"]= restcountriesData[0].region;
+        // inputBox["subregion"]= restcountriesData[0].subregion;
+        // // inputBox["population"]= restcountriesData[0].population;
+        // inputBox["area"]= restcountriesData[0].area;
+        // inputBox["currencies"]= restcountriesData[0].currencies;
+        // inputBox["flagLink"]= restcountriesData[0].flags[0];
+        // console.log("inputBox=>", inputBox)
+    
+
+
         console.log("imgURL!!!!!!!! ==>", imgURL);
-        document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}"></img>`
-        document.getElementById("results").innerHTML = `-Official Name : ${OfficialName} <br> -Calling Code : ${callingCodes} <br> -Capital City : ${capital} <br> -Region : ${region} <br> -Subregion : ${subregion} <br> -Population : ${population} millions <br> -Area : ${area} km²`
+        document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}"></img>`;
+        document.getElementById("flagImgHolder").innerHTML = `<img id="flagImg" src="${flagLink}"></img>`;
+        document.getElementById("results").innerHTML = `-Official Name : ${OfficialName} <br> -Capital City : ${capital} <br> -Region : ${region} <br> -Subregion : ${subregion} <br> -Area : ${area} km²`
         document.getElementById("pixabayLogoBox").innerHTML = `<img id="pixabayLogoImg" src="https://pixabay.com/static/img/public/leaderboard_a.png" alt="Pixabay">`
         // If we have used the historic prediction U.I. we add one more line to the box
         if(formDaysLeft> 16){
@@ -130,7 +149,8 @@ const respons= await axios.get('http://localhost:3000/results')
     }catch(error){
         console.log("error", error);
     }
-}
+})
+};
 // error handling function in the case that the country box has under or more the three digits
 function getCountry(){
   let formTheCountry= document.getElementById("country").value + "";

@@ -13,6 +13,7 @@ async function apiCall(req, res){
     let lastYearDateStart = req.body.data.UI_Inp.lastYearDateStart;
     let lastYearDateEnd = req.body.data.UI_Inp.lastYearDateEnd;
     let formDaysLeft = req.body.data.UI_Inp.formDaysLeft;
+    console.log("formDaysLeft=>", formDaysLeft)
     // declaring variables we are going to use to the first API call
     const baseUrl = "http://api.geonames.org/postalCodeSearch?"; 
     const placename = `&placename=${cityName}`;
@@ -78,7 +79,7 @@ async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDat
     inputBox["formDaysLeft"]=formDaysLeft;
     // the next two function are called with arguments from the info used up to now
     pixabay(cityName);
-    restcountries(countryCode)
+    restcountries(countryCode) //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 } catch (error) {
     console.error(error);
@@ -116,7 +117,7 @@ async function weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, cou
     inputBox["formDaysLeft"]=formDaysLeft;
     // the next two function are called with arguments from the info used up to now
     pixabay(cityName);
-    restcountries(countryCode)
+    restcountries(countryCode) //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 } catch (error) {
     console.error(error);
@@ -126,14 +127,12 @@ async function weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, cou
 // 3rd API call
 async function pixabay(cityName){
     let CityName= cityName;
-    console.log("Pixabay CityName=>", CityName)
     const baseUrl = "https://pixabay.com/api/?";
     const key = process.env.pixabayKey;  
     let search = `&q=${CityName}+city`;
     const image_type = "&image_type=photo";
     // final url
     const url = (baseUrl+key+search+image_type);
-    console.log("pixabayUrl=>", url);
 
     let options3 = {
         method: 'GET',
@@ -148,7 +147,6 @@ const resp = await axios(options3);
     try{
     let pixabayData = await resp.data;
     let webformatURL = pixabayData.hits[0].webformatURL
-    console.log("pixabayData.hits[0]",pixabayData.hits[0]);
     inputBox["webformatURL"]= webformatURL;
     return webformatURL;
 } catch (error) {
@@ -159,12 +157,10 @@ const resp = await axios(options3);
 // 4th API call to add the final bit of information
 async function restcountries(countryCode) {
     let CountryCode= countryCode;
-    console.log("Restcountries CountryCode=>", CountryCode)
-    const baseUrl = "https://restcountries.eu/rest/v2/name/";   
+    const baseUrl = "https://restcountries.com/v3/name/";
     let country = `${CountryCode}`
     // final url
     const restUrl = (baseUrl+country);
-    console.log("restUrl=>",restUrl);
 
     let options3 = {
         method: 'GET',
@@ -177,15 +173,19 @@ async function restcountries(countryCode) {
     const respo = await axios(options3);
     try{
     let restcountriesData = await respo.data;
+    console.log("restcountriesData=>", restcountriesData); //////////////////////////////////////////////////////////
     // all the information taken is put in the exporting object
-    inputBox["OfficialName"]= restcountriesData[0].name;
-    inputBox["callingCodes"]= restcountriesData[0].callingCodes;
-    inputBox["capital"]= restcountriesData[0].capital;
+    inputBox["OfficialName"]= restcountriesData[0].name.official;
+    // inputBox["callingCodes"]= restcountriesData.callingCodes;
+    inputBox["capital"]= restcountriesData[0].capital[0];
+    console.log("inputBox=>", inputBox)
     inputBox["region"]= restcountriesData[0].region;
     inputBox["subregion"]= restcountriesData[0].subregion;
-    inputBox["population"]= restcountriesData[0].population;
+    // inputBox["population"]= restcountriesData[0].population;
     inputBox["area"]= restcountriesData[0].area;
-    inputBox["currencies"]= restcountriesData[0].currencies.name;
+    inputBox["currencies"]= restcountriesData[0].currencies;
+    inputBox["flagLink"]= restcountriesData[0].flags[0];
+    console.log("inputBox=>", inputBox)
 
 } catch (error) {
     console.error(error);

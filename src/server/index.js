@@ -1,20 +1,12 @@
-// projectData = {}
-
-
 var path = require('path');
 const express = require('express');
 const fetch = require('node-fetch');
+
 const mockApi = require("./mockAPI");
 require('dotenv').config()
 const apiCall = mockApi.method;
 let inputBox = mockApi.otherMethod;
 const pixabay = mockApi.otherOtherMethod;
-// let webformatURL = mockApi.fourthMethod;
-
-// const mockAPIResponse = require('./mockAPI.js')
-
-
-
 const app = express()
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -35,25 +27,8 @@ app.listen(3000, function () {
 })
 
 app.post("/UI_Inp", apiCall)
-// app.post("/UI_Inp", pixabay)
 
 app.get("/results", function(req,res){
   console.log("inputBox =>", inputBox);
   res.send(inputBox);
 });
-
-// app.post("/addWeather", addWeather);
-
-// /*let data = [];*/
-
-// function addWeather (req,res){
-//     let data = req.body;
-
-//     projectData["temp"]= data.temp;
-//     projectData["feelings"]= data.feelings;
-//     projectData["date"]= data.date
-
-
-// };
-
-// module.exports = projectData
