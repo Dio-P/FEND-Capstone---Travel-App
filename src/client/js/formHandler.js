@@ -1,17 +1,18 @@
 
 import axios from 'axios';
 import Litepicker from 'litepicker';
-
+let TotalDays= ""
 let UI_Inp = {}
 // creating new Litepicker to be used to get the date
 new Litepicker({
     element: document.getElementById('datepicker'),
-    singleMode: true,
+    singleMode: false,
     tooltipText: {
       one: 'night',
       other: 'nights'
     },
     tooltipNumber: (totalDays) => {
+      TotalDays= totalDays - 1;
       return totalDays - 1;
     }
   })
@@ -35,6 +36,9 @@ async function handleSubmit(event) {
     document.getElementById("country").classList.remove('error');
     // Get date
     let formDate= document.getElementById('datepicker').value
+    let startEndDate= formDate.split(" ");
+    console.log("startEndDate =>", startEndDate);
+    let startingDate = startEndDate[0]; 
     // turn the date into something that you can use flexibly
     // Seperate the data to get an aray of strings that have one number in
     let date = formDate.split("-");
@@ -49,9 +53,45 @@ async function handleSubmit(event) {
     console.log(" numDateDay =>", numDateDay)
     // use this to create the new start and end date to use the to the API call
     let newDateStart = `${numDateYear}-${numDateMonth}-${numDateDay}`
-    let newDateEnd = `${numDateYear}-${numDateMonth}-${numDateDay+1}`
+    let newDateEnd = newDateEnding()
+    function newDateEnding(){
+      if(numDateDay>30){
+        let newDateEnding = `${numDateYear}-${numDateMonth+1}-01`;
+        console.log(" newDateEnding =>", newDateEnding);/////////////////////
+        if((numDateMonth+1)>12){
+          let newDateEnding = `${numDateYear+1}-01-01`;
+          console.log(" newDateEnding =>", newDateEnding);/////////////////////
+          return newDateEnding
+        }else{
+          return newDateEnding
+        }
+      }else{
+      let newDateEnding = `${numDateYear}-${numDateMonth}-${numDateDay+1}`;
+      console.log(" newDateEnding =>", newDateEnding);//////////////////////////
+      return newDateEnding
+    }
+  }
     let lastYearDateStart = `${numDateYear-1}-${numDateMonth}-${numDateDay}` //.toString();
-    let lastYearDateEnd = `${numDateYear-1}-${numDateMonth}-${numDateDay+1}`
+    let lastYearDateEnd = lastYearDateEnding()
+    function lastYearDateEnding() {
+      if(numDateDay>30){
+        let lastYearEndingDate = `${numDateYear-1}-${numDateMonth+1}-01`;
+        console.log(" lastYearEndingDate =>", lastYearEndingDate);/////////////////
+        if((numDateMonth+1)>12){
+          let lastYearEndingDate = `${numDateYear}-01-01`;
+          console.log(" lastYearEndingDate =>", lastYearEndingDate);////////////////////////////
+          return lastYearEndingDate;
+        }else{
+          return lastYearEndingDate;
+        }
+        return lastYearEndingDate;
+      }else{
+        let lastYearEndingDate = `${numDateYear-1}-${numDateMonth}-${numDateDay+1}`;
+        console.log(" lastYearEndingDate =>", lastYearEndingDate);///////////////////////
+        return lastYearEndingDate;
+    }
+  }
+  console.log(" lastYearDateEnd =>", lastYearDateEnd);
     console.log("newDateStart=>", newDateStart);
     console.log("newDateEnd=>", newDateEnd);
     console.log("lastYearDateStart=>", lastYearDateStart);
@@ -68,7 +108,7 @@ async function handleSubmit(event) {
     //////////////////////////////////////////////////////////////////////////////////////////
 
     // create a new Date to have against now
-    const countDownDate = new Date(formDate).getTime();
+    const countDownDate = new Date(startingDate).getTime();
     // get the days remaining from now to the chosen date
     const myfunc = setTimeout(function() {
       // get the date now
@@ -76,7 +116,7 @@ async function handleSubmit(event) {
       // calculate days remaining
     var timeleft = countDownDate - now;
     let formDaysLeft = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-    document.getElementById("days").innerHTML = "There are " + formDaysLeft + " days remaining until your trip."
+    document.getElementById("days").innerHTML = `There are ${formDaysLeft} days remaining until your trip. <br> Your trip will last for ${TotalDays} days`
     // Put everything on the UI_Inp object to send them to the server 
     UI_Inp["formDaysLeft"]=formDaysLeft;
     UI_Inp["formCity"]=formCity;
@@ -142,9 +182,9 @@ const respons= await axios.get('http://localhost:3000/results')
         document.getElementById("pixabayLogoBox").innerHTML = `<img id="pixabayLogoImg" src="https://pixabay.com/static/img/public/leaderboard_a.png" alt="Pixabay">`
         // If we have used the historic prediction U.I. we add one more line to the box
         if(formDaysLeft> 16){
-          document.getElementById("prognosis").innerHTML = `A typical weather for then is: <br> Min: ${min_temp} <br> Max: ${max_temp}`
+          document.getElementById("prognosis").innerHTML = `A typical weather for when your trip will be is: <br> Min: ${min_temp} <br> Max: ${max_temp}`
         }else{
-          document.getElementById("prognosis").innerHTML = `Min. Temperature : ${min_temp} <br> Max. Temperature : ${max_temp}`
+          document.getElementById("prognosis").innerHTML = `On your travelling day: ,br> Min. Temperature : ${min_temp} <br> Max. Temperature : ${max_temp}`
         }
     }catch(error){
         console.log("error", error);
