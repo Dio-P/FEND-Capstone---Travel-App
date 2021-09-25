@@ -163,10 +163,11 @@ const resp = await axios(options3);
 // 4th API call to add the final bit of information
 async function restcountries(countryCode) {
     let CountryCode= countryCode;
-    const baseUrl = "https://restcountries.com/v3/name/";
+    const baseUrl = "https://restcountries.com/v3/alpha/";
     let country = `${CountryCode}`
     // final url
     const restUrl = (baseUrl+country);
+    console.log("restUrl =>", restUrl)
 
     let options3 = {
         method: 'GET',

@@ -276,7 +276,7 @@ section {
     #cardBoard{
         display:grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
         
 
         .card{
@@ -454,11 +454,23 @@ section {
         }
     }
 
+    #cardPrognosis{
+        grid-area: 11/2/13/3;
+        margin-top: -10px;
+        #prognosisViewBox{
+            #prognosis{
+                font-size: $temp-font-s;
+                line-height: 30px;
+                margin-top: 20px;
+            }
+        }
+    }
+
     #cardInfo{
         grid-area: 13/2/16/3;
         padding-top: 40px;
         padding-bottom: 50px;
-        margin-top: -10px;
+        margin-top: 20px;
         
 
         #resulTitl{
@@ -485,18 +497,6 @@ section {
             margin-top: -25px;
         }
             
-    }
-
-    #cardPrognosis{
-        grid-area: 11/2/13/3;
-        margin-top: 30px;
-        #prognosisViewBox{
-            #prognosis{
-                font-size: $temp-font-s;
-                line-height: 30px;
-                margin-top: 20px;
-            }
-        }
     }
 }
 
