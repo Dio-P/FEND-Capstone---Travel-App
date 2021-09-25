@@ -176,8 +176,8 @@ const respons= await axios.get('http://localhost:3000/results')
 
 
         console.log("imgURL!!!!!!!! ==>", imgURL);
-        document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}"></img>`;
-        document.getElementById("flagImgHolder").innerHTML = `<img id="flagImg" src="${flagLink}"></img>`;
+        document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}" alt="photo from the city you are visiting"></img>`;
+        document.getElementById("flagImgHolder").innerHTML = `<img id="flagImg" src="${flagLink}" alt="Picture of the countries flag"></img>`;
         document.getElementById("results").innerHTML = `-Official Name : ${OfficialName} <br> -Capital City : ${capital} <br> -Region : ${region} <br> -Subregion : ${subregion} <br> -Area : ${area} km²`
         document.getElementById("pixabayLogoBox").innerHTML = `<img id="pixabayLogoImg" src="https://pixabay.com/static/img/public/leaderboard_a.png" alt="Pixabay">`
         // If we have used the historic prediction U.I. we add one more line to the box
