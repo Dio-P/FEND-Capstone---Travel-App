@@ -50,7 +50,7 @@ section {
     #cardBoard{
         display:grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
         
 
         .card{
@@ -225,11 +225,23 @@ section {
 
     }
 
+    #cardPrognosis{
+        grid-area: 11/1/13/1;
+        margin-top: -10px;
+        #prognosisViewBox{
+            #prognosis{
+                font-size: $temp-font-s;
+                line-height: 30px;
+                margin-top: 20px;
+            }
+        }
+    }
+
     #cardInfo{
-        grid-area: 11/1/14/1;
+        grid-area: 13/1/16/1;
         padding-top: 40px;
         padding-bottom: 50px;
-        margin-top: -10px;
+        margin-top: 20px;
         
 
         #resulTitl{
@@ -443,7 +455,7 @@ section {
     }
 
     #cardInfo{
-        grid-area: 11/2/14/3;
+        grid-area: 13/2/16/3;
         padding-top: 40px;
         padding-bottom: 50px;
         margin-top: -10px;
@@ -473,6 +485,18 @@ section {
             margin-top: -25px;
         }
             
+    }
+
+    #cardPrognosis{
+        grid-area: 11/2/13/3;
+        margin-top: 30px;
+        #prognosisViewBox{
+            #prognosis{
+                font-size: $temp-font-s;
+                line-height: 30px;
+                margin-top: 20px;
+            }
+        }
     }
 }
 
@@ -557,16 +581,7 @@ section {
             align-content: center;
             align-items: center;
         }
-
-        #prognosis{
-            grid-area: 3/1/4/1;
-            font-size: $temp-font-s;
-            line-height: 30px;
-            margin-top: 20px;
         }
-
-        }
-
         
         #inputBoxs{
             grid-area: 5/1/8/1;
@@ -686,4 +701,17 @@ section {
         }
             
     }
+
+    #cardPrognosis{
+        grid-area: 6/2/8/3;
+        margin-top: 30px;
+        #prognosisViewBox{
+            #prognosis{
+                font-size: $temp-font-s;
+                line-height: 30px;
+                margin-top: 20px;
+            }
+        }
+    }
+
 }

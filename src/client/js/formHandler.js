@@ -84,7 +84,6 @@ async function handleSubmit(event) {
         }else{
           return lastYearEndingDate;
         }
-        return lastYearEndingDate;
       }else{
         let lastYearEndingDate = `${numDateYear-1}-${numDateMonth}-${numDateDay+1}`;
         console.log(" lastYearEndingDate =>", lastYearEndingDate);///////////////////////
@@ -100,7 +99,7 @@ async function handleSubmit(event) {
     let formCityBoth= document.getElementById("city").value.split(",");
     console.log("formCityBoth", formCityBoth)
     // isolate only the city from the city/country that is produced when using google autofill
-    let formCity = formCityBoth[0];
+    let formCity = getCity()// formCityBoth[0];//////////////////////////////////////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     console.log("formCity=>", formCity);
     // let formCountry leads to and error handling function at the end of this file
     let formCountry= getCountry();
@@ -182,9 +181,9 @@ const respons= await axios.get('http://localhost:3000/results')
         document.getElementById("pixabayLogoBox").innerHTML = `<img id="pixabayLogoImg" src="https://pixabay.com/static/img/public/leaderboard_a.png" alt="Pixabay">`
         // If we have used the historic prediction U.I. we add one more line to the box
         if(formDaysLeft> 16){
-          document.getElementById("prognosis").innerHTML = `A typical weather for when your trip will be is: <br> Min: ${min_temp} <br> Max: ${max_temp}`
+          document.getElementById("prognosis").innerHTML = `A typical weather for when your trip will be is: <br> -Minimum Temperature: ${min_temp} <br> -Maximum Temperature: ${max_temp}`
         }else{
-          document.getElementById("prognosis").innerHTML = `On your travelling day: ,br> Min. Temperature : ${min_temp} <br> Max. Temperature : ${max_temp}`
+          document.getElementById("prognosis").innerHTML = `The weather on your travelling day will be: <br> -Minimum Temperature : ${min_temp} <br> -Maximum Temperature : ${max_temp}`
         }
     }catch(error){
         console.log("error", error);
@@ -210,5 +209,18 @@ function getCountry(){
   }
 }
 
+function getCity(){
+  let formCityBoth= document.getElementById("city").value.split(",");
+    console.log("formCityBoth", formCityBoth)
+    // isolate only the city from the city/country that is produced when using google autofill
+    let formCity = formCityBoth[0];
+    if(formCity.length <2){
+      document.getElementById("city").classList.add('error');
+    alert("Error! City value needs to be added");
+    throw new Error("Error! City value needs to be added");
+    }else{
+      return formCity
+    }
+}
 // exporting our main function.
 export { handleSubmit }
