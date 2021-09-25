@@ -50,7 +50,7 @@ section {
     #cardBoard{
         display:grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
         
 
         .card{
@@ -87,21 +87,20 @@ section {
             grid-area: 3/1/8/1;
         }
 
-        #pixabayLogoBox{
-            grid-area: 8/1/9/1;
-        }
-
-
-        #pixabayLogoImg{
-            grid-area: 8/1/9/1;
-            width: 45%;
-            background-position: center;
-        }
-
         #mainImg{
             width: 95%;
             background-position: center;
             border-radius: 10px;
+        }
+
+        #pixabayLogoBox{
+            grid-area: 9/1/10/1;
+        }
+
+
+        #pixabayLogoImg{
+            width: 45%;
+            background-position: center;
         }
 
     }
@@ -248,7 +247,7 @@ section {
             }
         }
         #results{
-            grid-area: 4/1/9/1;
+            grid-area: 6/1/11/1;
             font-size: $info-font-s;
             text-align: left;
             line-height: 20px;
@@ -265,7 +264,7 @@ section {
     #cardBoard{
         display:grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+        grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
         
 
         .card{
@@ -302,13 +301,18 @@ section {
             grid-area: 3/1/8/1;
         }
 
+        #mainImg{
+            width: 95%;
+            background-position: center;
+            border-radius: 10px;
+        }
+
         #pixabayLogoBox{
-            grid-area: 8/1/9/1;
+            grid-area: 9/1/10/1;
         }
 
 
         #pixabayLogoImg{
-            grid-area: 8/1/9/1;
             width: 45%;
             background-position: center;
         }
@@ -461,7 +465,7 @@ section {
         }
 
         #results{
-            grid-area: 4/1/9/1;
+            grid-area: 6/1/11/1;
             font-size: $info-font-s;
             text-align: left;
             line-height: 20px;
@@ -515,21 +519,20 @@ section {
             grid-area: 3/1/8/1;
         }
 
+        #mainImg{
+            width: 95%;
+            background-position: center;
+            border-radius: 10px;
+        }
+
         #pixabayLogoBox{
             grid-area: 8/1/9/1;
         }
-
 
         #pixabayLogoImg{
             grid-area: 8/1/9/1;
             width: 45%;
             background-position: center;
-        }
-
-        #mainImg{
-            width: 95%;
-            background-position: center;
-            border-radius: 10px;
         }
 
     }
@@ -684,15 +687,3 @@ section {
             
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
