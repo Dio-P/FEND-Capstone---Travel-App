@@ -34,6 +34,7 @@ async function handleSubmit(event) {
     
     event.preventDefault()
     document.getElementById("country").classList.remove('error');
+    document.getElementById("city").classList.remove('error');
     // Get date
     let formDate= document.getElementById('datepicker').value
     let startEndDate= formDate.split(" ");
