@@ -58,9 +58,15 @@ async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDat
     let lat = `&lat=${inputLat}`;
     let long = `&lon=${inputLong}`;
     let start_date = `&start_date=${lastYearDateStart}`;
-    let end_date =  `&start_date=${lastYearDateEnd}`;
+    let end_date =  `&end_date=${lastYearDateEnd}`;
     // final url 
     const histUrl = (baseUrl+lat+long+start_date+end_date+key);
+    console.log("histUrl=>", histUrl); /////////////////////////////////////////////////////////////////////////////
+    // https://api.weatherbit.io/v2.0/history/daily?&lat=55.850058302483156&lon=-4.095037092881232&start_date=2020-12-17&start_date=2020-12-18&key=8bd27fa25c054293935d109ab993c167
+    // https://api.weatherbit.io/v2.0/history/daily?&lat=55.83214101661675&lon=-4.170513977759842&start_date=2020-11-12&start_date=2020-11-13&key=8bd27fa25c054293935d109ab993c167
+
+    // https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2021-09-20&end_date=2021-09-21&key=API_KEY
+    // https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2021-09-21&end_date=2021-09-22&key=8bd27fa25c054293935d109ab993c167
     let options2 = {
         method: 'GET',
         url: histUrl,

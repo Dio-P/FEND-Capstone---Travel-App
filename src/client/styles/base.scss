@@ -227,7 +227,7 @@ section {
     }
 
     #cardInfo{
-        grid-area: 11/1/13/1;
+        grid-area: 11/1/14/1;
         padding-top: 40px;
         padding-bottom: 50px;
         margin-top: -10px;
@@ -240,10 +240,13 @@ section {
             margin-top: -45px;
         }
 
-        #flagLink{
-            width: 80%;
-        }
+        #flagImgHolder{
 
+            #flagImg{
+                grid-area: 4/1/6/1;
+                width: 50%;
+            }
+        }
         #results{
             grid-area: 4/1/9/1;
             font-size: $info-font-s;
@@ -436,7 +439,7 @@ section {
     }
 
     #cardInfo{
-        grid-area: 11/2/13/3;
+        grid-area: 11/2/14/3;
         padding-top: 40px;
         padding-bottom: 50px;
         margin-top: -10px;
@@ -449,8 +452,12 @@ section {
             margin-top: -45px;
         }
 
-        #flagImg{
-            width: 50%;
+        #flagImgHolder{
+
+            #flagImg{
+                grid-area: 4/1/6/1;
+                width: 50%;
+            }
         }
 
         #results{
