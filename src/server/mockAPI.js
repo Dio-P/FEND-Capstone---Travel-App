@@ -201,6 +201,6 @@ async function restcountries(countryCode) {
 
 // exporting modules from there here the information and the object to be extracted is going to go back to the server
   module.exports = {
-    method:apiCall,
-    otherMethod: inputBox,
-    otherOtherMethod: pixabay}
+    apiCall,
+    inputBox,
+    pixabay}

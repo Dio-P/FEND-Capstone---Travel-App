@@ -1,34 +1,22 @@
 var path = require('path');
-const express = require('express');
-const fetch = require('node-fetch');
-
-const mockApi = require("./mockAPI");
 require('dotenv').config()
-const apiCall = mockApi.method;
-let inputBox = mockApi.otherMethod;
-const pixabay = mockApi.otherOtherMethod;
-const app = express()
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-const cors = require("cors");
-app.use(cors());
 
-app.use(express.static('dist'))
+// importing function and object from the API call function
+const mockApi = require("./mockAPI");
+const apiCall = mockApi.apiCall;
+let inputBox = mockApi.inputBox;
 
-console.log(__dirname)
-
-app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
-})
-
+// importing app instance from app.js
+const app = require("./app.js");
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!')
 })
 
+// when we get the input from the Client tha apiCall function is activated
 app.post("/UI_Inp", apiCall)
 
 app.get("/results", function(req,res){
   console.log("inputBox =>", inputBox);
-  res.send(inputBox);
+  res.status(200).send(inputBox);
 });

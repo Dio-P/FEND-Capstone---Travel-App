@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --env=jsdom --coverage ",
     "start": "node src/server/index.js",
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "webpack serve --open --config webpack.dev.js"
@@ -28,7 +28,10 @@
     },
     "setupFiles": [
       "<rootDir>/setupTests.js"
-    ]
+    ],
+    "globals": {
+      "window": {}
+    }
   },
   "keywords": [],
   "author": "",
@@ -49,6 +52,7 @@
     "sass": "^1.38.1",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
+    "supertest": "^6.1.6",
     "webpack": "^5.51.1",
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.0.0",

@@ -30,6 +30,7 @@ new Litepicker({
 //   google.maps.event.addDomListener(window, 'load', initialize);
 
 // our main function, trigered by the form submit
+// document.getElementById("subB").addEventListener("click", handleSubmit(event));
 async function handleSubmit(event) {
     
     event.preventDefault()
@@ -142,9 +143,6 @@ const respons= await axios.get('http://localhost:3000/results')
   return ClInputBox})
   .then(ClInputBox=>{
     try {
-        // console.log("respons =>",respons);
-        // let ClInputBox = await respons.data;
-        // console.log("ClInputBox!!!!!!!! ==>", ClInputBox);
         // from our data we are declaring those that we need to update the first box of our U.I. with the min and max temperature
         let imgURL = ClInputBox.webformatURL;
         let min_temp = ClInputBox.min_temp;
@@ -159,22 +157,7 @@ const respons= await axios.get('http://localhost:3000/results')
         let subregion = ClInputBox.subregion;
         let formDaysLeft = ClInputBox.formDaysLeft
         let flagLink = ClInputBox.flagLink ///////////////////////////////////////////////
-        // updating the U.I.
-
-        // inputBox["OfficialName"]= restcountriesData[0].name.official;
-        // // inputBox["callingCodes"]= restcountriesData.callingCodes;
-        // inputBox["capital"]= restcountriesData[0].capital[0];
-        // console.log("inputBox=>", inputBox)
-        // inputBox["region"]= restcountriesData[0].region;
-        // inputBox["subregion"]= restcountriesData[0].subregion;
-        // // inputBox["population"]= restcountriesData[0].population;
-        // inputBox["area"]= restcountriesData[0].area;
-        // inputBox["currencies"]= restcountriesData[0].currencies;
-        // inputBox["flagLink"]= restcountriesData[0].flags[0];
-        // console.log("inputBox=>", inputBox)
-    
-
-
+        // updating the U.I. 
         console.log("imgURL!!!!!!!! ==>", imgURL);
         document.getElementById("imgHolder").innerHTML = `<img id="mainImg" src="${imgURL}" alt="photo from the city you are visiting"></img>`;
         document.getElementById("flagImgHolder").innerHTML = `<img id="flagImg" src="${flagLink}" alt="Picture of the countries flag"></img>`;
