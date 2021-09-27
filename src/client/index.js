@@ -1,5 +1,6 @@
 import { postData } from "./js/postFunc";
 import Litepicker from "litepicker";
+import { handleSubmit } from "./js/formHandler";
 // import { handleSubmit } from "./js/mainFunc.js";
 // import { TotalDays } from "./js/formHandler.js"
 
@@ -10,8 +11,11 @@ import "./styles/form.scss"
 import "./styles/header.scss"
 
 export {
-    // handleSubmit,
+    handleSubmit,
     postData,
     Litepicker,
     // TotalDays
 }
+
+
+
