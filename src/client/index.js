@@ -3,6 +3,7 @@ import Litepicker from "litepicker";
 import { handleSubmit } from "./js/formHandler";
 // import { handleSubmit } from "./js/mainFunc.js";
 // import { TotalDays } from "./js/formHandler.js"
+document.getElementById("subB").addEventListener("click", handleSubmit);
 
 import "./styles/resets.scss"
 import "./styles/base.scss"

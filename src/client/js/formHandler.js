@@ -30,7 +30,7 @@ new Litepicker({
 //   google.maps.event.addDomListener(window, 'load', initialize);
 
 // our main function, trigered by the form submit
-// document.getElementById("subB").addEventListener("click", handleSubmit(event));
+
 async function handleSubmit(event) {
     
     event.preventDefault()
