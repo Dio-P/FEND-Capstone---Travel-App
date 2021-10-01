@@ -2,7 +2,7 @@ var path = require('path');
 require('dotenv').config()
 
 // importing function and object from the API call function
-const mockApi = require("./mockAPI");
+const mockApi = require("./apiCall");
 const apiCall = mockApi.apiCall;
 let inputBox = mockApi.inputBox;
 
@@ -16,7 +16,7 @@ app.listen(3000, function () {
 // when we get the input from the Client tha apiCall function is activated
 app.post("/UI_Inp", apiCall)
 
-app.get("/results", function(req,res){
-  console.log("inputBox =>", inputBox);
-  res.status(200).send(inputBox);
-});
+// app.get("/results", function(req,res){
+//   console.log("inputBox =>", inputBox);
+//   res.status(200).send(inputBox);
+// });

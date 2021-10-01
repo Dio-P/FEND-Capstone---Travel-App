@@ -1,5 +1,6 @@
 const axios = require('axios').default;
 require('dotenv').config()
+const app = require("./app.js");
 // main object to extract the information back to the Client
 let inputBox = {}
 
@@ -33,6 +34,11 @@ async function apiCall(req, res){
                 'Content-Type': 'application/json;charset=UTF-8'
             },
         };
+        /////////////
+app.get("/results", async(req,res) =>{
+           
+    
+        /////////////////
 const response = await axios(options);
     try{
     let data = await response.data;
@@ -45,10 +51,14 @@ const response = await axios(options);
     }else{
         weatherbitForec(inputBox, cityName, newDateStart, newDateEnd, countryCode, formDaysLeft);
     }
+    console.log("inputBox =>", inputBox);
+    res.status(200).send(inputBox);
+  
 }catch (error) {
     console.error(error);
   }
-    }
+    
+})};
     // second API call option 1
 async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDateEnd, countryCode, formDaysLeft) { 
     let inputLat= inputBox.latitude;
@@ -62,11 +72,6 @@ async function weatherbitHist(inputBox, cityName, lastYearDateStart, lastYearDat
     // final url 
     const histUrl = (baseUrl+lat+long+start_date+end_date+key);
     console.log("histUrl=>", histUrl); /////////////////////////////////////////////////////////////////////////////
-    // https://api.weatherbit.io/v2.0/history/daily?&lat=55.850058302483156&lon=-4.095037092881232&start_date=2020-12-17&start_date=2020-12-18&key=8bd27fa25c054293935d109ab993c167
-    // https://api.weatherbit.io/v2.0/history/daily?&lat=55.83214101661675&lon=-4.170513977759842&start_date=2020-11-12&start_date=2020-11-13&key=8bd27fa25c054293935d109ab993c167
-
-    // https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2021-09-20&end_date=2021-09-21&key=API_KEY
-    // https://api.weatherbit.io/v2.0/history/daily?postal_code=27601&country=US&start_date=2021-09-21&end_date=2021-09-22&key=8bd27fa25c054293935d109ab993c167
     let options2 = {
         method: 'GET',
         url: histUrl,
@@ -193,7 +198,6 @@ async function restcountries(countryCode) {
     inputBox["currencies"]= restcountriesData[0].currencies;
     inputBox["flagLink"]= restcountriesData[0].flags[0];
     console.log("inputBox=>", inputBox)
-
 } catch (error) {
     console.error(error);
   }
