@@ -129,7 +129,7 @@ async function handleSubmit(event) {
     UI_Inp["lastYearDateStart"]=lastYearDateStart;
     UI_Inp["lastYearDateEnd"]=lastYearDateEnd;
     // post the object to the server
-    Client.postData("/UI_Inp", {UI_Inp});
+    Client.postData("http://localhost:3000/UI_Inp", {UI_Inp});
     console.log("UI_Inp =>", UI_Inp);
     // clearInterval()
     return (UI_Inp);
