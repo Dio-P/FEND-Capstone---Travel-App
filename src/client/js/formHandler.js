@@ -17,17 +17,17 @@ new Litepicker({
     }
   })
 
-// //To be activated later on !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//   //google autofill
-//   function initialize() {
-// //to show only cities
-//     var options = {
-//       types: ['(cities)']
-//      };
-//     var input = document.getElementById('city');
-//     new google.maps.places.Autocomplete(input);
-//   }
-//   google.maps.event.addDomListener(window, 'load', initialize);
+//To be activated later on !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //google autofill
+  function initialize() {
+//to show only cities
+    var options = {
+      types: ['(cities)']
+     };
+    var input = document.getElementById('city');
+    new google.maps.places.Autocomplete(input);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
 
 // our main function, trigered by the form submit
 
@@ -56,6 +56,7 @@ async function handleSubmit(event) {
     // use this to create the new start and end date to use the to the API call
     let newDateStart = `${numDateYear}-${numDateMonth}-${numDateDay}`
     let newDateEnd = newDateEnding()
+    // this function is to prevent to possibility of having 32 as day number and 13 as month for forecast api 
     function newDateEnding(){
       if(numDateDay>30){
         let newDateEnding = `${numDateYear}-${numDateMonth+1}-01`;
@@ -73,8 +74,9 @@ async function handleSubmit(event) {
       return newDateEnding
     }
   }
-    let lastYearDateStart = `${numDateYear-1}-${numDateMonth}-${numDateDay}` //.toString();
+    let lastYearDateStart = `${numDateYear-1}-${numDateMonth}-${numDateDay}`
     let lastYearDateEnd = lastYearDateEnding()
+    // this function is to prevent to possibility of having 32 as day number and 13 as month for the history Api 
     function lastYearDateEnding() {
       if(numDateDay>30){
         let lastYearEndingDate = `${numDateYear-1}-${numDateMonth+1}-01`;
