@@ -113,7 +113,7 @@ async function handleSubmit(event) {
     // create a new Date to have against now
     const countDownDate = new Date(startingDate).getTime();
     // get the days remaining from now to the chosen date
-    const myfunc = setTimeout(function() {
+  const myfunc = setTimeout(function() {
       // get the date now
     const now = new Date().getTime();
       // calculate days remaining
@@ -132,14 +132,16 @@ async function handleSubmit(event) {
     Client.postData("http://localhost:3000/UI_Inp", {UI_Inp});
     console.log("UI_Inp =>", UI_Inp);
     // clearInterval()
+    getResults()
     return (UI_Inp);
     }, 0)
-
+  }
 
     // this is the second part. From here on we do with the information that has allready been processed by the server to update the U.I.
     // async axios call to the server 
+async function getResults() {
 const respons= await axios.get('http://localhost:3000/results')
-.then(async function(respons){
+  .then(async function(respons){
   let ClInputBox = await respons.data;
   console.log("ClInputBox!!!!!!!! ==>", ClInputBox);
   return ClInputBox})

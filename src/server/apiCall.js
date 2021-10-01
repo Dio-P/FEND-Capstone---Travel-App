@@ -37,9 +37,9 @@ async function apiCall(req, res){
         };
         /////////////
         console.log("about to go to app get")
-app.get("/results", async(req,res) =>{
-    console.log("options=>", options)//////////////////////////////////////////////////
-           console.log("inside app get")
+    app.get("/results", async(req,res) =>{
+        console.log("options=>", options)//////////////////////////////////////////////////
+        console.log("inside app get")
     
         /////////////////
     const response = await axios(options);
