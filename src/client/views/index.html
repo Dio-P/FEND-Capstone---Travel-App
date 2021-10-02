@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <!-- meta for responsive media -->
+        <meta
+        charset="utf-8" content="width=device-width,
+         initial-scale=1, maximum-scale=1"
+        name="viewport"
+        />
+        <!-- npm litepicker as a date picker -->
+        <script>
+            const picker = new Litepicker({ 
+              element: document.getElementById('date') 
+            });
+          </script>
+          <!-- Google Api for cities autofill -->
+          <script
+          src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyAqVcesCIGKRenj9rGahbuLghiOhuWjgpo&libraries=places">
+        </script>
+        
+    </head>
+
+    <body>
+
+        <main>
+            <section>
+                <div id="cardBoard">
+                    <div class=card id=cardImg>
+                        <div id="title">Travel Planner</div>
+                        <div id= "imgHolder"></div>
+                        <a  href="https://pixabay.com/" id= "pixabayLogoBox"></a>
+                    </div>
+
+                    <div class="card" id="cardInput">
+                        <div id="FirstInfoBox">
+                            <p id="days"> </p>
+                            
+                        </div>
+                        <div id="inputBoxs">
+                            <form class="" onsubmit="return handleSubmit(event)"></form>
+                                <input id="datepicker" class="UI-inp-element"  placeholder="Pick a date" readonly="">
+                                <input id="country" type="text" name="input" value="" placeholder="Country Code initials (ex: GB, US)">
+                                <input id="city" type="text" name="input" value="" placeholder="City">
+                            </div>
+                            <div id="subBBox">
+                                <input id="subB" type="submit" name="" value="Submit" onsubmit="return Client.handleSubmit(event)">
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card" id="cardPrognosis">
+                        <div id="prognosisViewBox">
+                            <div id="prognosis"> </div>
+                        </div>
+                    </div>
+
+                    <div class="card" id="cardInfo">
+                        <div id="resulTitl">Information about the Country</div>
+                        <div id="flagImgHolder"></div>
+                        <div id="results"></div>
+                    </div>
+                </div>
+        </main>
+        <footer>
+            <div id="footerBox">
+                <p>By Dio Papadopoulos for Udacity's "Front end development" Course.</p>
+            </div>
+        </footer>
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+           </script>
+    </body>
+</html>
