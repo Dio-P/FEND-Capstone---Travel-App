@@ -2,19 +2,30 @@ const axios = require('axios').default;
 require('dotenv').config()
 const app = require("./app.js");
 // main object to extract the information back to the Client
-
+let inputBox = {};
+let cityName = "";
+    console.log("cityName =>", cityName);
+let countryCode = "";
+let newDateStart = "";
+let newDateEnd = "";
+let lastYearDateStart = "";
+let lastYearDateEnd = "";
+let formDaysLeft = "";
 
 // main function that is activated when and by the information send by the Client (from the server file)
 async function apiCall(req, res){
-    
+    console.log("inputBox before=>", inputBox)
+    inputBox = {};
+    console.log("inputBox after=>", inputBox)
     // declaring the particular information we are going to us from those we just got back from the Client
-    let cityName = req.body.data.UI_Inp.formCity;
-    let countryCode = req.body.data.UI_Inp.formCountry;
-    let newDateStart = req.body.data.UI_Inp.newDateStart;
-    let newDateEnd = req.body.data.UI_Inp.newDateEnd;
-    let lastYearDateStart = req.body.data.UI_Inp.lastYearDateStart;
-    let lastYearDateEnd = req.body.data.UI_Inp.lastYearDateEnd;
-    let formDaysLeft = req.body.data.UI_Inp.formDaysLeft;
+    cityName = req.body.data.UI_Inp.formCity;
+    console.log("cityName =>", cityName);
+    countryCode = req.body.data.UI_Inp.formCountry;
+    newDateStart = req.body.data.UI_Inp.newDateStart;
+    newDateEnd = req.body.data.UI_Inp.newDateEnd;
+    lastYearDateStart = req.body.data.UI_Inp.lastYearDateStart;
+    lastYearDateEnd = req.body.data.UI_Inp.lastYearDateEnd;
+    formDaysLeft = req.body.data.UI_Inp.formDaysLeft;
     console.log("formDaysLeft=>", formDaysLeft)
     // declaring variables we are going to use to the first API call
     const baseUrlGeo = "http://api.geonames.org/postalCodeSearch?"; 
@@ -47,19 +58,19 @@ async function apiCall(req, res){
         let data = await response.data;
         // puting lat and lng into the latitude, longitude
         let inputLat =data.postalCodes[0].lat;
-        console.log("inputLat =>", inputLat);//////////////////////////////////////
-        let inputBox= Object.create({})
+        // console.log("inputLat =>", inputLat);//////////////////////////////////////
+        // let inputBox= Object.create({})
         inputBox["latitude"]=data.postalCodes[0].lat;
-        let inputLong =data.postalCodes[0].lng;
-        console.log("inputLong =>", inputLong);///////////////////////////////////
+        // let inputLong =data.postalCodes[0].lng;
+        // console.log("inputLong =>", inputLong);///////////////////////////////////
         inputBox["longitude"]=data.postalCodes[0].lng;
         // the following statements desides which of the two different prediction call is going to be used hist(ory) and forec(ast)
         if(formDaysLeft > 16){
             console.log("inside if 1");////////////////////////////////////
                 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // second API call option 1
-                    // let inputLat= inputBox.latitude;
-                    // let inputLong= inputBox.longitude;
+                    let inputLat= inputBox.latitude;
+                    let inputLong= inputBox.longitude;
                     const baseUrlWeathHist = "https://api.weatherbit.io/v2.0/history/daily?";
                     const WeathHistkey = process.env.weatherbKey;
                     let lat = `&lat=${inputLat}`;
@@ -96,8 +107,8 @@ async function apiCall(req, res){
                     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // second API call oprion 2
                     console.log("inside if 2");///////////////////////////////////////////////////////
-                    // let inputLat= inputBox.latitude;
-                    // let inputLong= inputBox.longitude;
+                    let inputLat= inputBox.latitude;
+                    let inputLong= inputBox.longitude;
                     const baseUrlWeathForc = "https://api.weatherbit.io/v2.0/forecast/daily?";
                     const WeathForckey = process.env.weatherbKey;
                     let lat = `&lat=${inputLat}`;
@@ -135,10 +146,9 @@ async function apiCall(req, res){
                         console.error(error);
                     }
                     
-                    let CityName= cityName;
                     const baseUrlPixa = "https://pixabay.com/api/?";
                     const Pixakey = process.env.pixabayKey;  
-                    let search = `&q=${CityName}+city`;
+                    let search = `&q=${cityName}+city`;
                     const image_type = "&image_type=photo";
                     // final url
                     const url = (baseUrlPixa+Pixakey+search+image_type);
