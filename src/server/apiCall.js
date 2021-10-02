@@ -1,10 +1,9 @@
 const axios = require('axios').default;
 require('dotenv').config()
 const app = require("./app.js");
-// main object to extract the information back to the Client
+// main object to extract the information back to the Client + global declarations
 let inputBox = {};
 let cityName = "";
-    console.log("cityName =>", cityName);
 let countryCode = "";
 let newDateStart = "";
 let newDateEnd = "";
@@ -14,19 +13,16 @@ let formDaysLeft = "";
 
 // main function that is activated when and by the information send by the Client (from the server file)
 async function apiCall(req, res){
-    console.log("inputBox before=>", inputBox)
+    //the main object that is used globaly empties after restarting the function 
     inputBox = {};
-    console.log("inputBox after=>", inputBox)
     // declaring the particular information we are going to us from those we just got back from the Client
     cityName = req.body.data.UI_Inp.formCity;
-    console.log("cityName =>", cityName);
     countryCode = req.body.data.UI_Inp.formCountry;
     newDateStart = req.body.data.UI_Inp.newDateStart;
     newDateEnd = req.body.data.UI_Inp.newDateEnd;
     lastYearDateStart = req.body.data.UI_Inp.lastYearDateStart;
     lastYearDateEnd = req.body.data.UI_Inp.lastYearDateEnd;
     formDaysLeft = req.body.data.UI_Inp.formDaysLeft;
-    console.log("formDaysLeft=>", formDaysLeft)
     // declaring variables we are going to use to the first API call
     const baseUrlGeo = "http://api.geonames.org/postalCodeSearch?"; 
     const placename = `&placename=${cityName}`;
@@ -37,7 +33,7 @@ async function apiCall(req, res){
     // forming the main axios URL
     const URL = (baseUrlGeo+placename+country+maxRows+username);
     let url = encodeURI(URL);
-    // axios options
+    // axios options for first call
         let options = {
             method: 'GET',
             url: url,
@@ -46,28 +42,18 @@ async function apiCall(req, res){
                 'Content-Type': 'application/json;charset=UTF-8'
             },
         };
-        /////////////
-        console.log("about to go to app get")
     app.get("/results", async(req,res) =>{
-        console.log("options=>", options)//////////////////////////////////////////////////
-        console.log("inside app get")
-    
-        /////////////////
-    const response = await axios(options);
+
+        const response = await axios(options);
         try{
         let data = await response.data;
         // puting lat and lng into the latitude, longitude
         let inputLat =data.postalCodes[0].lat;
-        // console.log("inputLat =>", inputLat);//////////////////////////////////////
-        // let inputBox= Object.create({})
         inputBox["latitude"]=data.postalCodes[0].lat;
-        // let inputLong =data.postalCodes[0].lng;
-        // console.log("inputLong =>", inputLong);///////////////////////////////////
         inputBox["longitude"]=data.postalCodes[0].lng;
+        /////////////////////////////////////////////////////---------------------SEcond Call--------------------------------------//////////////////////////////////////////
         // the following statements desides which of the two different prediction call is going to be used hist(ory) and forec(ast)
         if(formDaysLeft > 16){
-            console.log("inside if 1");////////////////////////////////////
-                ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             // second API call option 1
                     let inputLat= inputBox.latitude;
                     let inputLong= inputBox.longitude;
@@ -79,7 +65,6 @@ async function apiCall(req, res){
                     let end_date =  `&end_date=${lastYearDateEnd}`;
                     // final url 
                     const histUrl = (baseUrlWeathHist+lat+long+start_date+end_date+WeathHistkey);
-                    console.log("histUrl=>", histUrl); /////////////////////////////////////////////////////////////////////////////
                     let options2 = {
                         method: 'GET',
                         url: histUrl,
@@ -103,18 +88,16 @@ async function apiCall(req, res){
                     } catch (error) {
                         console.error(error);
                     }
+        /////////////////////////////////////////////////////---------------------Third Call--------------------------------------//////////////////////////////////////////
+
                 }else{
-                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                     // second API call oprion 2
-                    console.log("inside if 2");///////////////////////////////////////////////////////
                     let inputLat= inputBox.latitude;
                     let inputLong= inputBox.longitude;
                     const baseUrlWeathForc = "https://api.weatherbit.io/v2.0/forecast/daily?";
                     const WeathForckey = process.env.weatherbKey;
                     let lat = `&lat=${inputLat}`;
-                    console.log("lat =>", lat);///////////////
                     let long = `&lon=${inputLong}`;
-                    console.log("long =>", long);///////////////
                     let start_date = `&start_date=${newDateStart}`;
                     let end_date = `&start_date=${newDateEnd}`;
                     // final url
@@ -131,7 +114,6 @@ async function apiCall(req, res){
                     const res = await axios(options2);
 
                     try{
-                        console.log("options2=>", options2);//////////////////////////////////////
                     let bitData = await res.data;
                     inputBox["min_temp"]= bitData.data[0].min_temp;
                     inputBox["max_temp"]= bitData.data[0].max_temp;
@@ -145,7 +127,8 @@ async function apiCall(req, res){
                     } catch (error) {
                         console.error(error);
                     }
-                    
+         /////////////////////////////////////////////////////---------------------Fourth Call--------------------------------------//////////////////////////////////////////
+                   
                     const baseUrlPixa = "https://pixabay.com/api/?";
                     const Pixakey = process.env.pixabayKey;  
                     let search = `&q=${cityName}+city`;
@@ -167,20 +150,18 @@ async function apiCall(req, res){
                     let pixabayData = await resp.data;
                     let webformatURL = pixabayData.hits[0].webformatURL
                     inputBox["webformatURL"]= webformatURL;
-                    console.log("webformatURL=>", webformatURL);////////////////////////////////////
                     // return webformatURL;
                     } catch (error) {
                         console.error(error);
                     }
                 }
-///////////////////////////////////^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^????????????????????????????????????
+        /////////////////////////////////////////////////////---------------------Fifth Call--------------------------------------//////////////////////////////////////////
+
                 let CountryCode= countryCode;
-                console.log("CountryCode=>", CountryCode);//////////////////////////////////
                 const baseUrlREST = "https://restcountries.com/v3/alpha/";
                 let country = `${CountryCode}`
                 // final url
                 const restUrl = (baseUrlREST+country);
-                console.log("restUrl =>", restUrl)
             
                 let options3 = {
                     method: 'GET',
@@ -193,25 +174,22 @@ async function apiCall(req, res){
                 const respo = await axios(options3);
                 try{
                 let restcountriesData = await respo.data;
-                console.log("restcountriesData=>", restcountriesData); //////////////////////////////////////////////////////////
                 // all the information taken is put in the exporting object
                 inputBox["OfficialName"]= restcountriesData[0].name.official;
-                // inputBox["callingCodes"]= restcountriesData.callingCodes;
                 inputBox["capital"]= restcountriesData[0].capital[0];
                 console.log("inputBox=>", inputBox)
                 inputBox["region"]= restcountriesData[0].region;
                 inputBox["subregion"]= restcountriesData[0].subregion;
-                // inputBox["population"]= restcountriesData[0].population;
                 inputBox["area"]= restcountriesData[0].area;
                 inputBox["currencies"]= restcountriesData[0].currencies;
                 inputBox["flagLink"]= restcountriesData[0].flags[0];
                 console.log("inputBoxFinal 1=>", inputBox)
-                  ///////////////////////////////////////!!!!!!!!!!!!!!!!!!!!!!!/////////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        console.log("inputBox Final 2 =>", inputBox);
         
             } catch (error) {
                 console.error(error);
             }
+        /////////////////////////////////////////////////////---------------------SENDING--------------------------------------//////////////////////////////////////////
+
         console.log("about to sent=>", inputBox)
         res.status(200).send(inputBox);
         
