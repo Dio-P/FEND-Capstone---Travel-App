@@ -15,8 +15,3 @@ app.listen(3000, function () {
 
 // when we get the input from the Client tha apiCall function is activated
 app.post("/UI_Inp", apiCall)
-
-// app.get("/results", function(req,res){
-//   console.log("inputBox =>", inputBox);
-//   res.status(200).send(inputBox);
-// });

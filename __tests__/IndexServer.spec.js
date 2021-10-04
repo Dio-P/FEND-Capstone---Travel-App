@@ -1,7 +1,7 @@
 const request = require("supertest");
 const { response } = require("../src/server/index.js");
 const app = require("../src/server/app.js");
-const apiCall= require("../src/server/mockAPI.js");
+const apiCall= require("../src/server/apiCall.js");
 
 
 describe("test the result is send back", () => {
