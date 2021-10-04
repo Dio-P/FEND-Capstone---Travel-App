@@ -30,7 +30,6 @@ By entering the date and the destination of your travel, the app returns the wea
     "axios": "^0.21.4",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
-    "jquery": "^3.6.0",
     "litepicker": "^2.0.11",
     "node-fetch": "^2.0.0",
     "regenerator-runtime": "^0.13.9"
