@@ -1,19 +1,32 @@
 # Webpack Express Example App
 
-This app is getting a country/city input from the U.I, passing it to a first API that returns the latitude and longitude values. 
-Then those values are sent to a second API that either (option 1) predicts the weather if the date given is within a 16 days period, or (option 2) return the historic weather of the previous year, to return this as a "usual for the period temperature". 
+## Description
 
-A third API call is getting a picture from the visited city to update the U.I with.
+By entering the date and the destination of your travell, the app returns the weather prediction for the day of travelling, a picture of the city and some general information about the country you are visiting.
 
-There is also a fourth call to rest Countries API that gets some additional information about the country, with which a third U.I. section/card is updated.
+### In greater detail
+
+1. This app is getting a country/city input from the U.I, passing it to a first API that returns the latitude and longitude values. 
+2. Then those values are sent to a second API that either (option 1) predicts the weather if the date given is within a 16 days period, or (option 2) return the historic weather of the previous year, to return this as a "usual for the period temperature". 
+3. Then, a third API call is getting a picture from the visited city to update the U.I with.
+4. There is also a fourth call to rest Countries API that gets some additional information about the country, with which a third U.I. section/card is updated.
+
 - The above is one of the list of additional requirements I have chosen.
-- I have chosen a second one of the same list: this is the addition of a starting and ending date and the addition of the showing of the total days the trip will start.
+- Of the same list I have chosen a second one: the addition of a starting and ending date and the addition of the showing of the total days the trip will start.
 
-It is using, among others, Webpack5, Express and Jest.
+### This project among others is using:
 
-It has been made by Dio Papadopoulos as part of a Udacity course for front end development.
+- Webpack5
+- Express
+- Jest
+- Service Workers
+- SASS (Scss)
+- Babel
 
-Dependencies:
+#### It was made by Dio Papadopoulos as part of a Udacity's front end developer course.
+
+##### Dependencies:
+```
     "axios": "^0.21.4",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -21,8 +34,10 @@ Dependencies:
     "litepicker": "^2.0.11",
     "node-fetch": "^2.0.0",
     "regenerator-runtime": "^0.13.9"
+  ```
 
-devDependencies: 
+##### devDependencies:
+```
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
     "@types/node-fetch": "^3.0.3",
@@ -42,3 +57,4 @@ devDependencies:
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.0.0",
     "workbox-webpack-plugin": "^6.2.4"
+```
