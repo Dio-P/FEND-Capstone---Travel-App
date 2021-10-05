@@ -42,3 +42,5 @@ devDependencies:
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.0.0",
     "workbox-webpack-plugin": "^6.2.4"
+
+    2
