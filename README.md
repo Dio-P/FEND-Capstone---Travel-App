@@ -1,30 +1,3 @@
-<<<<<<< HEAD
-# Webpack Express Example App
-
-This app is getting a country/city input from the U.I, passing it to a first API that returns the latitude and longitude values. 
-Then those values are sent to a second API that either (option 1) predicts the weather if the date given is within a 16 days period, or (option 2) return the historic weather of the previous year, to return this as a "usual for the period temperature". 
-
-A third API call is getting a picture from the visited city to update the U.I with.
-
-There is also a fourth call to rest Countries API that gets some additional information about the country, with which a third U.I. section/card is updated.
-- The above is one of the list of additional requirements I have chosen.
-- I have chosen a second one of the same list: this is the addition of a starting and ending date and the addition of the showing of the total days the trip will start.
-
-It is using, among others, Webpack5, Express and Jest.
-
-It has been made by Dio Papadopoulos as part of a Udacity course for front end development.
-
-Dependencies:
-    "axios": "^0.21.4",
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "jquery": "^3.6.0",
-    "litepicker": "^2.0.11",
-    "node-fetch": "^2.0.0",
-    "regenerator-runtime": "^0.13.9"
-
-devDependencies: 
-=======
 # Traveling Weather App
 
 ## Description
@@ -64,7 +37,6 @@ By entering the date and the destination of your travel, the app returns the wea
 
 ##### devDependencies:
 ```
->>>>>>> 022f8be008c11ba4ce661c0a54324c926b8d2c37
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
     "@types/node-fetch": "^3.0.3",
@@ -84,9 +56,4 @@ By entering the date and the destination of your travel, the app returns the wea
     "webpack-cli": "^4.8.0",
     "webpack-dev-server": "^4.0.0",
     "workbox-webpack-plugin": "^6.2.4"
-<<<<<<< HEAD
-
-    2
-=======
 ```
->>>>>>> 022f8be008c11ba4ce661c0a54324c926b8d2c37
