@@ -1,4 +1,4 @@
-# Traveling Weather App
+# Travelling Weather App
 
 ## Description
 
@@ -23,7 +23,7 @@ By entering the date and the destination of your travel, the app returns the wea
 - SASS (Scss)
 - Babel
 
-#### It was made by Dio Papadopoulos as part of a Udacity's front end developer course.
+#### It was made by Dio Papadopoulos as part of the Udacity's front end developer course.
 
 ##### Dependencies:
 ```
