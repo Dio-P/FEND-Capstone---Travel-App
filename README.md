@@ -70,7 +70,7 @@ npm run build-dev
 ###List of Dependencies:
 
 ```
-"devDependencies": 
+DevDependencies: 
     "@babel/cli": "^7.14.8",
     "@babel/core": "^7.15.0",
     "@types/node-fetch": "^3.0.3",
@@ -93,7 +93,7 @@ npm run build-dev
     "workbox-webpack-plugin": "^6.2.4"
   
   
-  "dependencies": 
+  Dependencies: 
     "axios": "^0.21.4",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
