@@ -23,13 +23,15 @@ By entering the date and the destination of your travel, the app returns the wea
 - SASS (Scss)
 - Babel
 
-#### It was made by Dio Papadopoulos as part of the Udacity's front end developer course.
+#### It was made by [Dio Papadopoulos](https://dio-papa-portfolio-site.herokuapp.com/travellingWeatherApp) as part of the Udacity's front end developer course.
 
 ### Instruction:
 
-If you want to download and run this first know:
+####If you want to download and run this first know:
 
-That my personal API keys are not included, if you want to download and run this on your own computer you need to get your own free API keys from the following places:
+That if you want to see this working you can go to [My Portfolio Site](https://dio-papa-portfolio-site.herokuapp.com/travellingWeatherApp)
+
+and that my personal API keys are not included, if you want to download and run this on your own computer you need to get your own free API keys from the following places:
 
 - For geoUserN [geonames](http://www.geonames.org/)
 - For weatherbKey [weatherbit](https://www.weatherbit.io/account/login?next=%2Faccount%2Fdashboard)
