@@ -25,3 +25,19 @@ By entering the date and the destination of your travel, the app returns the wea
 
 #### It was made by Dio Papadopoulos as part of the Udacity's front end developer course.
 
+### Instruction:
+
+My personal API keys are not included, if you want to download and run this on your own computer you need to get your own free API keys from the following places:
+
+-For geoUserN [geonames](http://www.geonames.org/)
+-For weatherbKey [weatherbit](https://www.weatherbit.io/account/login?next=%2Faccount%2Fdashboard)
+-For pixabayKey [pixabay](https://pixabay.com/accounts/login/?next=/accounts/settings/%3Fwelcome)
+
+and add them in the .env file.
+
+```
+geoUserN = &username= <your_user_name>
+weatherbKey = &key= <your_key>
+pixabayKey = key= <your_key>
+
+```
