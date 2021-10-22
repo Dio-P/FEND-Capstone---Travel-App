@@ -33,7 +33,9 @@ My personal API keys are not included, if you want to download and run this on y
 -For weatherbKey [weatherbit](https://www.weatherbit.io/account/login?next=%2Faccount%2Fdashboard)
 -For pixabayKey [pixabay](https://pixabay.com/accounts/login/?next=/accounts/settings/%3Fwelcome)
 
-and add them in the .env file.
+open a new .env file 
+copy the following code in there 
+and substitute the < > areas with the keys you will get from the sites above.
 
 ```
 geoUserN = &username= <your_user_name>
